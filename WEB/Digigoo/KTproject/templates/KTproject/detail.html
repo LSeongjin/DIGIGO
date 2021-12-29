@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+            <div class="col-lg-8 panel panel-default">
+                <p>{{UserPicture.UserTakenPicture|linebreaksbr}}</p>
+                <p>첫 번째 여행지 : {{UserPicture.FirstTravel}}</p>
+                <p>두 번째 여행지 : {{UserPicture.SecondTravel}}</p>
+                <p>세 번째 여행지 : {{UserPicture.ThirdTravel}}</p>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+    </div>
+
+    <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 panel panel-default">
+
+            </div>
+            <div class="col-md-2"></div>
+    </div>
+{% endblock %}

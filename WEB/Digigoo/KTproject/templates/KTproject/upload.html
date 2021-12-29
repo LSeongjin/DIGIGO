@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+- Upload
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 panel panel-default">
+
+        <form action="" method="POST" class="url_input" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <p>그림을 입력해 주세요 : {{form.UserDrawnPicture}}</p>
+            <p>어떤 그림인가요? : {{form.Destination_choice}}</p>
+
+             <input type="submit" class="btn btn-primary" value="Upload">
+        </form>
+
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}

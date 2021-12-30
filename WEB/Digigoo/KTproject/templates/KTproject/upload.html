@@ -42,12 +42,12 @@
 </style>
 <script>
 (function() {
-            
+
     var $file = document.getElementById("file")
     var dropZone = document.querySelector(".drop-zone")
 
     var toggleClass = function(className) {
-        
+
         console.log("current event: " + className)
 
         var list = ["dragenter", "dragleave", "dragover", "drop"]
@@ -72,7 +72,7 @@
         // input file 영역에 드랍된 파일들로 대체
         $file.files = files
         showFiles($file.files)
-        
+
     }
 
     $file.addEventListener("change", function(e) {

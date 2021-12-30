@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import PictureForm
-from .models import UserPicture
+import KTproject.models
 import os
 import cv2
 import datetime
@@ -49,10 +49,10 @@ def pictureNew(request):
             # 21.12.30 --> 위의 에러 우회해서 해결했습니다
             UserPicture.save()
 
-            return HttpResponseRedirect('/detail/'+str(UserPicture.ID))
+            userPicture = get_object_or_404(KTproject.models.UserPicture, ID=UserPicture.ID)
+            return render(request, 'KTproject/detail.html', {'userPicture': userPicture})
     if request.method == 'GET':
         form = PictureForm()
     return render(request, 'KTproject/upload.html', {'form':form})
 
-def DetailView(request):
-    return
+

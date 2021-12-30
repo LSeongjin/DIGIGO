@@ -24,6 +24,7 @@ import os
 import glob
 import tensorflow as tf
 from tensorflow.keras import datasets, layers, models
+from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from itertools import chain, repeat, cycle
 from sklearn.model_selection import train_test_split
 
@@ -54,10 +55,14 @@ cd gdrive/MyDrive/KT
 # get img list from path
 image_folders = sorted(glob.glob("Image/*"))
 
+image_folders.remove('Image/info')
+
 files = []
 each_class_num = []
 for folder in image_folders:
-  temp = sorted(glob.glob(folder + "/*"))
+  temp = sorted(glob.glob(folder + "/*.jpg"))
+  temp.extend(sorted(glob.glob(folder + "/*.png")))
+  temp.extend(sorted(glob.glob(folder + "/*.jpeg")))
   files.extend(temp)
   each_class_num.append(len(temp))
 
@@ -80,7 +85,7 @@ print(train_label.shape)
 train_img = train_img / (256.0)
 
 x_train, x_test, y_train, y_test = train_test_split(train_img, train_label, test_size=0.1, stratify=train_label, random_state=34)
-x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, stratify=y_train, random_state=12)
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.1, stratify=y_train, random_state=12)
 
 print(x_train.shape)
 print(y_train.shape)
@@ -107,9 +112,9 @@ print(y_val.shape)
   - res_kernel_size : resNet에서는 기본적으로 첫번째 conv 제외 3*3 kernel로 고정
 
 ## Layers
-1. layer1 : 7*7 convolution + pooling
-2. layer2 : res_unit1 * 3
-3. layer3 : res_unit2 + res_unit3 * 3
+1. layer1 : convolution + pooling
+2. layer2 : conv + norm + relu + conv + norm + relu + add
+3. layer3 : conv + norm + relu + conv + norm + relu + identity + add
 4. flatten : 분류기에 넣기 위해 flatten진행
 5. classifier : 분류기, FC layer이용, ResNet에서는 FC layer의 Weight개수가 많으므로 한개의 FC layer만 사용
 
@@ -122,13 +127,13 @@ layer2에서 사용하는 res_unit2의 경우, 이미지 데이터가 들어갈 
 global input_img_shape, input_channel, layer1_output_channel, layer1_kernel_size, res_kernel_size, layer2_output_channel, layer3_output_channel
 input_img_shape = (256, 256, 3)
 input_channel = 3
-layer1_output_channel = 12
-layer1_kernel_size = (7, 7)
-layer2_output_channel = 12
-layer3_output_channel = 24
+layer1_output_channel = 6
+layer1_kernel_size = (15, 15)
+layer2_output_channel = 6
+layer3_output_channel = 12
 
 # overall residual units num = num_residual_units * num_residual_layers 
-res_kernel_size = (3, 3)
+res_kernel_size = (21, 21)
 
 from tensorflow.python.keras.activations import softmax
 class cnn_model(tf.keras.Model):
@@ -138,69 +143,53 @@ class cnn_model(tf.keras.Model):
     self.num_residual_units = 3 # number of units per layer
     self.num_residual_layers = 2 # number of layer per model
     self.res_kernel_size = (3, 3)
-
-    self.layer1 = models.Sequential(
-        [layers.Conv2D(layer1_output_channel, layer1_kernel_size, strides=(2, 2), 
-                       padding='same', input_shape=input_img_shape, activation='relu'),
-         layers.MaxPool2D(pool_size=(2, 2))]
-    )
-
-    self.res_unit1 = models.Sequential(
-        [layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
-    self.res_unit2 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, strides=(2, 2), padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
-    self.res_unit3 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
+    
+    self.conv1 = layers.Conv2D(layer1_output_channel, layer1_kernel_size, strides=(2, 2), 
+                       padding='same', input_shape=input_img_shape, activation='relu')
+    self.pool1 = layers.MaxPool2D(pool_size=(4, 4))
+    self.conv2_t = layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same')
+    self.batchnorm1 = layers.BatchNormalization()
+    self.relu1 = layers.ReLU()
+    self.conv2 = layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same')
+    self.batchnorm2 = layers.BatchNormalization()
+    self.relu2 = layers.ReLU()
+    self.add1 = layers.Add()
+    
+    self.conv3 = layers.Conv2D(layer3_output_channel, res_kernel_size, strides=(2, 2), padding='same')
+    self.batchnorm3 = layers.BatchNormalization()
+    self.relu3 = layers.ReLU()
+    
+    self.conv4 = layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same')
+    self.batchnorm4 = layers.BatchNormalization()
+    self.relu4 = layers.ReLU()
+    self.add2 = layers.Add()
+    
     self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
 
-    self.flatten_layer = layers.Flatten()
-
-    self.classifier = models.Sequential(
-        [layers.Dense(4)]
-    )
+    self.flat = layers.Flatten()
+    self.fc1 = layers.Dense(4)
 
   def call(self, x):
-    x = self.layer1(x)
-    x_t = self.res_unit1(x)
-    x = x + x_t
-    #x_t = self.res_unit1(x)
-    #x = x + x_t
-    #x_t = self.res_unit1(x)
-    #x = x + x_t
-    x_t = self.res_unit2(x)
-    x = self.identity(x) + x_t
-    x_t = self.res_unit3(x)
-    x = x + x_t
-    #x_t = self.res_unit3(x)
-    #x = x + x_t
-    #x_t = self.res_unit3(x)
-    #x = x + x_t
-    x = self.flatten_layer(x)
-    x = self.classifier(x)
+    x = self.conv1(x)
+    x = self.pool1(x)
+    x_t = self.conv2_t(x)
+    x_t = self.batchnorm1(x_t)
+    x_t = self.relu1(x_t)
+    x_t = self.conv2(x_t)
+    x_t = self.batchnorm2(x_t)
+    x_t = self.relu2(x_t)
+    x = self.add1([x, x_t])
+    #print(x.shape)
+    x_t = self.conv3(x_t)
+    x_t = self.batchnorm3(x_t)
+    x_t = self.relu3(x_t)
+    x_t = self.conv4(x_t)
+    x_t = self.batchnorm4(x_t)
+    x_t = self.relu4(x_t)
+    x = self.identity(x)
+    x = self.add2([x, x_t])
+    x = self.flat(x)
+    x = self.fc1(x)
     probs = softmax(x)
     return probs
 
@@ -223,17 +212,24 @@ print(y_test.shape)
 print(x_val.shape)
 print(y_val.shape)
 
-print(y_train.sum())
-print(y_test.sum())
-print(y_val.sum())
+filename = 'checkpoint.ckpt'
+checkpoint = ModelCheckpoint(filename, monitor='val_loss', verbose=1, save_best_only=True, save_weights_only=True)
+earlystopping = EarlyStopping(monitor='val_loss', patience=10)
+# , callbacks=[checkpoint, earlystopping]
 
-model.fit(x_train, y_train, epochs=epoch, batch_size=batch, validation_data=(x_val, y_val))
+history = model.fit(x_train, y_train, epochs=epoch, validation_data=(x_val, y_val) , callbacks=[checkpoint, earlystopping])
 
-results = model.evaluate(x_test, y_test, batch_size=batch)
+model_fi = cnn_model()
+model_fi.load_weights(filename)
+model_fi.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+results = model_fi.evaluate(x_test, y_test)
 
 print('test loss, test acc:', results)
 
 model.summary()
+
+model.save("CNNMODEL.h5")
 
 """#Dump"""
 
@@ -323,6 +319,17 @@ class ResidualLayer(tf.keras.Model):
     x = self.res3(x)
     return x
 
+from tensorflow.python.keras.activations import softmax
+model = models.Sequential()
+model.add(layers.Conv2D(layer1_output_channel, (11, 11), activation='relu', input_shape = (256, 256, 3)))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(layer2_output_channel, (7, 7), activation='relu'))
+model.add(layers.MaxPooling2D((2, 2)))
+#model.add(layers.Conv2D(layer3_output_channel, (7, 7), activation='relu'))
+model.add(layers.Flatten())
+model.add(layers.Dense(4, activation='softmax'))
+
+from tensorflow.python.keras.activations import softmax
 class cnn_model(tf.keras.Model):
   global input_img_shape, input_channel, layer1_output_channel, layer1_kernel_size, res_kernel_size, layer2_output_channel, layer3_output_channel
   def __init__(self):
@@ -330,6 +337,78 @@ class cnn_model(tf.keras.Model):
     self.num_residual_units = 3 # number of units per layer
     self.num_residual_layers = 2 # number of layer per model
     self.res_kernel_size = (3, 3)
+
+    self.layer1 = models.Sequential(
+        [
+         layers.Conv2D(layer1_output_channel, layer1_kernel_size, strides=(2, 2), 
+                       padding='same', input_shape=input_img_shape, activation='relu'),
+         layers.MaxPool2D(pool_size=(4, 4))]
+    )
+
+    self.res_unit1 = models.Sequential(
+        [layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
+         layers.BatchNormalization(),
+         layers.ReLU(),
+         layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
+         layers.BatchNormalization(),
+         layers.ReLU()
+         ]
+    )
+    '''
+
+    self.res_unit2 = models.Sequential(
+        [layers.Conv2D(layer3_output_channel, res_kernel_size, strides=(2, 2), padding='same'),
+         layers.BatchNormalization(),
+         layers.ReLU(),
+         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
+         layers.BatchNormalization(),
+         layers.ReLU()
+         ]
+    )
+
+    self.res_unit3 = models.Sequential(
+        [layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
+         layers.BatchNormalization(),
+         layers.ReLU(),
+         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
+         layers.BatchNormalization(),
+         layers.ReLU()
+         ]
+    )'''
+
+    #self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
+
+    self.flatten_layer = layers.Flatten()
+
+    self.classifier = models.Sequential(
+        [layers.Dense(4)]
+    )
+
+  def call(self, x):
+    x = self.layer1(x)
+    x_t = self.res_unit1(x)
+    x = x + x_t
+    #x_t = self.res_unit1(x)
+    #x = x + x_t
+    #x_t = self.res_unit1(x)
+    #x = x + x_t
+    #x_t = self.res_unit2(x)
+    #x = self.identity(x) + x_t
+    #x_t = self.res_unit3(x)
+    #x = x + x_t
+    #x_t = self.res_unit3(x)
+    #x = x + x_t
+    #x_t = self.res_unit3(x)
+    #x = x + x_t
+    x = self.flatten_layer(x)
+    x = self.classifier(x)
+    probs = softmax(x)
+    return probs
+
+class cnn_model(tf.keras.Model):
+  global input_img_shape, input_channel, layer1_output_channel, layer1_kernel_size, res_kernel_size, layer2_output_channel, layer3_output_channel
+  def __init__(self):
+    super(cnn_model, self).__init__()
 
     self.layer1 = models.Sequential(
         [layers.Conv2D(layer1_output_channel, layer1_kernel_size, strides=(2, 2), 
@@ -346,7 +425,7 @@ class cnn_model(tf.keras.Model):
          layers.ReLU()
          ]
     )
-
+    '''
     self.unit2 = models.Sequential(
         [layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
          layers.BatchNormalization(),
@@ -366,6 +445,7 @@ class cnn_model(tf.keras.Model):
          layers.ReLU()
          ]
     )
+    '''
 
     self.unit4 = models.Sequential(
         [layers.Conv2D(layer3_output_channel, res_kernel_size, strides=(2, 2), padding='same'),
@@ -377,7 +457,7 @@ class cnn_model(tf.keras.Model):
          ]
     )
 
-    self.unit5 = models.Sequential(
+    '''self.unit5 = models.Sequential(
         [layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
          layers.BatchNormalization(),
          layers.ReLU(),
@@ -405,32 +485,32 @@ class cnn_model(tf.keras.Model):
          layers.BatchNormalization(),
          layers.ReLU()
          ]
-    )   
-
+    )   '''
+    self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
     self.flatten_layer = layers.Flatten()
 
     self.classifier = models.Sequential(
         [layers.Dense(4)]
     )
 
-    self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
+    
 
   def call(self, x):
     x = self.layer1(x)
-    x_t = self.unit1(x)
-    x = x + x_t
-    x_t = self.unit2(x)
-    x = x + x_t
-    x_t = self.unit3(x)
-    x = x + x_t
-    x_t = self.unit4(x)
-    x = self.identity(x) + x_t
-    x_t = self.unit5(x)
-    x = x + x_t
-    x_t = self.unit6(x)
-    x = x + x_t
-    x_t = self.unit7(x)
-    x = x + x_t
+    x = self.unit1(x)
+    #x = x + x_t
+    #x_t = self.unit2(x)
+    #x = x + x_t
+    #x_t = self.unit3(x)
+    #x = x + x_t
+    x = self.unit4(x)
+    #x = self.identity(x) + x_t
+    #x_t = self.unit5(x)
+    #x = x + x_t
+    #x_t = self.unit6(x)
+    #x = x + x_t
+    #x_t = self.unit7(x)
+    #x = x + x_t
     x = self.flatten_layer(x)
     x = self.classifier(x)
     probs = tf.nn.softmax(x)

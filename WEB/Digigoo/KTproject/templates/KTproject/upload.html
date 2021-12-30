@@ -8,13 +8,15 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 panel panel-default">
 
-        <form action="" method="POST" class="url_input" enctype="multipart/form-data">
+        <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <p>그림을 입력해 주세요 : {{form.UserDrawnPicture}}</p>
+            <br>그림을 입력해 주세요 : <input type="file" name="UserDrawnPicture"><br>
+            <!--<p>{{form.UserDrawnPicture}}</p>-->
             <p>어떤 그림인가요? : {{form.Destination_choice}}</p>
 
-             <input type="submit" class="btn btn-primary" value="Upload">
+
+             <input type="submit" class="btn btn-primary" value="Submit">
         </form>
 
 

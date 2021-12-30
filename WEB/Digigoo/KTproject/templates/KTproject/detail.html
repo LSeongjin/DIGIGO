@@ -6,7 +6,7 @@
 {% block content %}
     <div class="row">
             <div class="col-lg-8 panel panel-default">
-                <p>{{UserPicture.UserTakenPicture|linebreaksbr}}</p>
+                <p>{{UserPicture.UserTakenPicture.url|linebreaksbr}}</p>
                 <p>첫 번째 여행지 : {{UserPicture.FirstTravel}}</p>
                 <p>두 번째 여행지 : {{UserPicture.SecondTravel}}</p>
                 <p>세 번째 여행지 : {{UserPicture.ThirdTravel}}</p>

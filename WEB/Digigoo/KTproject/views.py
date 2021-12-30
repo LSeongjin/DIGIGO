@@ -9,7 +9,7 @@ from PIL import Image
 from django.http import HttpResponseRedirect
 from.CNN_Pic_To_Place import Pic_to_place
 from.GAN_Drawn_To_Take_Picture import GAN_Drawn_To_Take_Picture
-from django.core.files import File as DjangoFile
+
 
 def pictureNew(request):
     if request.method =='POST':
@@ -19,15 +19,20 @@ def pictureNew(request):
             UserPicture.UserDrawnPicture = request.FILES['UserDrawnPicture']
             UserPicture.Destination_choice = request.POST['Destination_choice']
             UserPicture.save()
-            UserDrawn_array = cv2.imread(str(UserPicture.UserDrawnPicture), cv2.IMREAD_GRAYSCALE)
+            UserDrawn_array = cv2.imread(str(UserPicture.UserDrawnPicture), cv2.IMREAD_COLOR)
             convolved_array = cv2.GaussianBlur(UserDrawn_array, (0, 0), 3)
             Bu_Image = Image.fromarray(convolved_array)
             #Bu_Image.save(str(UserPicture.ID)+'Bulred_Image.png', 'PNG')
             # 가우시안 필터 적용
             #print(Bu_Image)
-            UserPicture.UserTakenPicture = GAN_Drawn_To_Take_Picture(Bu_Image, UserPicture.Destination_choice)
+            UserTakenPicture = GAN_Drawn_To_Take_Picture(Bu_Image, UserPicture.Destination_choice)
+            UserTakenPicture.save(str(UserPicture.ID)+'GANed_Image.png', 'PNG')
             #GAN
-            DestinationResult = Pic_to_place(UserPicture.UserTakenPicture)
+
+            DestinationResult = Pic_to_place(UserTakenPicture)
+            #UserTakenPicture = Image.open(str(UserPicture.ID)+'GANed_Image.png', 'PNG')
+            #DestinationResult = Pic_to_place(UserTakenPicture)
+
             #CNN
 
             UserPicture.FirstTravel = DestinationResult[0][0]
@@ -40,12 +45,14 @@ def pictureNew(request):
             #지금 장고모델이 업데이트 되지 않는 이슈가 있어서 결과화면 보기가 되지 않습니다
             #이 부분은 시도는 해보겠으나 우회해서 디테일 함수에 결과값을 모두 넘기는 방식으로
             #억지로 구현이 가능하므로 일정을 안배해서 구현할 예정입니다.
+
+            # 21.12.30 --> 위의 에러 우회해서 해결했습니다
             UserPicture.save()
 
-            return DetailView()
+            return HttpResponseRedirect('/detail/'+str(UserPicture.ID))
     if request.method == 'GET':
         form = PictureForm()
     return render(request, 'KTproject/upload.html', {'form':form})
 
 def DetailView(request):
-    return HttpResponseRedirect('/detail/'+str(UserPicture.ID))
+    return

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+            <div class="col-lg-8 panel panel-default">
+                <img src={{userPicture.UserDrawnPicture.url}}></img>
+                <!--
+                <p>{{userPicture.UserDrawnPicture.url}}</p>
+                <img src=/{{userPicture.ID}}GANed_Image.png/>
+                -->
+                <p>첫 번째 여행지 : {{userPicture.FirstTravel}}</p>
+                <p>확률 : {{userPicture.FirstTravelRate}}</p>
+                <p>두 번째 여행지 : {{userPicture.SecondTravel}}</p>
+                <p>확률 : {{userPicture.SecondTravelRate}}</p>
+                <p>세 번째 여행지 : {{userPicture.ThirdTravel}}</p>
+                <p>확률 : {{userPicture.ThirdTravelRate}}</p>
+            </div>
+            <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 panel panel-default">
+
+            </div>
+            <div class="col-md-2"></div>
+    </div>
+{% endblock %}

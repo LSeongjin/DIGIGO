@@ -14,6 +14,7 @@ Original file is located at
 * cv2 : image resize, 불러오기 등의 처리
 * glob : 디렉토리 파일 탐색
 * tensorflow : 모듈 설계
+* itertools : list iterate
 """
 
 import numpy as np
@@ -23,6 +24,8 @@ import os
 import glob
 import tensorflow as tf
 from tensorflow.keras import datasets, layers, models
+from itertools import chain, repeat, cycle
+from sklearn.model_selection import train_test_split
 
 """# Colab 드라이브 마운트
 ##### 이후 $ cd gdrive/MyDrive/경로.. 로 기본 디렉토리 수정하여 사용
@@ -49,25 +52,42 @@ cd gdrive/MyDrive/KT
 """
 
 # get img list from path
-files = sorted(glob.glob("image/*"))
+image_folders = sorted(glob.glob("Image/*"))
 
-files
+files = []
+each_class_num = []
+for folder in image_folders:
+  temp = sorted(glob.glob(folder + "/*"))
+  files.extend(temp)
+  each_class_num.append(len(temp))
+
+each_class_num
 
 # read image from files list & reshape
 # train_img shape : ( , 256, 256, 3)
 train_img = np.array(np.array([cv2.resize(cv2.imread(file, cv2.IMREAD_COLOR), dsize=(256, 256),
                                  interpolation=cv2.INTER_LINEAR).astype(np.float64) for file in files]))
 
+image_num = train_img.shape[0]
+labels = 4
+train_label = np.array(list(chain.from_iterable((repeat(n, k) for (n, k) in zip(range(labels), each_class_num)))))
+
 print(train_img.shape)
 print(train_img[0].shape)
-#print(train_img)
-
-train_label.shape
-
-train_label = np.array([0, 0, 1, 3])
+print(train_label.shape)
 
 # normalize
 train_img = train_img / (256.0)
+
+x_train, x_test, y_train, y_test = train_test_split(train_img, train_label, test_size=0.1, stratify=train_label, random_state=34)
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, stratify=y_train, random_state=12)
+
+print(x_train.shape)
+print(y_train.shape)
+print(x_test.shape)
+print(y_test.shape)
+print(x_val.shape)
+print(y_val.shape)
 
 """# Model Architecture
 
@@ -110,6 +130,7 @@ layer3_output_channel = 24
 # overall residual units num = num_residual_units * num_residual_layers 
 res_kernel_size = (3, 3)
 
+from tensorflow.python.keras.activations import softmax
 class cnn_model(tf.keras.Model):
   global input_img_shape, input_channel, layer1_output_channel, layer1_kernel_size, res_kernel_size, layer2_output_channel, layer3_output_channel
   def __init__(self):
@@ -154,6 +175,7 @@ class cnn_model(tf.keras.Model):
          ]
     )
 
+    self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
 
     self.flatten_layer = layers.Flatten()
 
@@ -161,27 +183,25 @@ class cnn_model(tf.keras.Model):
         [layers.Dense(4)]
     )
 
-    self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
-
   def call(self, x):
     x = self.layer1(x)
     x_t = self.res_unit1(x)
     x = x + x_t
-    x_t = self.res_unit1(x)
-    x = x + x_t
-    x_t = self.res_unit1(x)
-    x = x + x_t
+    #x_t = self.res_unit1(x)
+    #x = x + x_t
+    #x_t = self.res_unit1(x)
+    #x = x + x_t
     x_t = self.res_unit2(x)
     x = self.identity(x) + x_t
     x_t = self.res_unit3(x)
     x = x + x_t
-    x_t = self.res_unit3(x)
-    x = x + x_t
-    x_t = self.res_unit3(x)
-    x = x + x_t
+    #x_t = self.res_unit3(x)
+    #x = x + x_t
+    #x_t = self.res_unit3(x)
+    #x = x + x_t
     x = self.flatten_layer(x)
     x = self.classifier(x)
-    probs = tf.nn.softmax(x)
+    probs = softmax(x)
     return probs
 
 model = cnn_model()
@@ -192,7 +212,26 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 
 """train"""
 
-model.fit(train_img, train_label, epochs=5)
+# Train Hyperparameters
+epoch = 50
+batch = 10
+
+print(x_train.shape)
+print(y_train.shape)
+print(x_test.shape)
+print(y_test.shape)
+print(x_val.shape)
+print(y_val.shape)
+
+print(y_train.sum())
+print(y_test.sum())
+print(y_val.sum())
+
+model.fit(x_train, y_train, epochs=epoch, batch_size=batch, validation_data=(x_val, y_val))
+
+results = model.evaluate(x_test, y_test, batch_size=batch)
+
+print('test loss, test acc:', results)
 
 model.summary()
 

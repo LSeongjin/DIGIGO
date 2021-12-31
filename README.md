@@ -1,8 +1,16 @@
 # DIGIGO 
 
-## kt_intern5
+프로젝트 간단 설명
+  1. GAN MODEL
+  2. CNN MODEL
+  3. WEB
 
-### GAN MODEL
+### kt_intern5
+
+조원 이름???
+
+## GAN MODEL
+
   #### DataSet  
   |종류|갯수|
   |:---:|---|

@@ -1,0 +1,16 @@
+body {
+
+    background-color: #b7eae0;
+    text-align: center;
+}
+.drop-zone {
+    width: 100%;
+    height: 200px;
+    border: 1px dotted black;
+    background-color: rgb(245, 231, 253);
+  }
+  
+  .drop-zone-dragenter,
+  .drop-zone-dragover {
+    border: 10px solid blue;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>uploadpage</title>
+        <!--라이브러리-->
+        <link rel="stylesheet" href="boot_css/bootstrap.min.css">
+        <link rel="stylesheet" href="../boot_css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        <!--css-->
+       <style>
+        body {
+            background-color: #b7eae0;
+            text-align: center;
+        }
+        #dragrect {
+            border-style: dotted; 
+            border-color: white;
+        }
+        .drop-zone {
+            width: 100%;
+            height: 200px;
+            border: 1px dotted black;
+            background-color: rgb(245, 231, 253);
+        }
+          
+          .drop-zone-dragenter,
+          .drop-zone-dragover {
+            border: 10px solid blue;
+        }
+       </style>
+
+       <!--javascript-->
+        <script>
+        var $file = document.getElementById("file")
+        var dropZone = document.querySelector(".drop-zone")
+
+        var toggleClass = function(className) {
+
+            console.log("current event: " + className)
+
+            var list = ["dragenter", "dragleave", "dragover", "drop"]
+
+            for (var i = 0; i < list.length; i++) {
+                if (className === list[i]) {
+                    dropZone.classList.add("drop-zone-" + list[i])
+                } else {
+                    dropZone.classList.remove("drop-zone-" + list[i])
+                }
+            }
+        }
+
+        var showFiles = function(files) {
+            dropZone.innerHTML = ""
+            for(var i = 0, len = files.length; i < len; i++) {
+                dropZone.innerHTML += "<p>" + files[i].name + "</p>"
+            }
+        }
+
+        var selectFile = function(files) {
+            // input file 영역에 드랍된 파일들로 대체
+            $file.files = files
+            showFiles($file.files)
+
+        }
+
+        $file.addEventListener("change", function(e) {
+            showFiles(e.target.files)
+        })
+
+        // 드래그한 파일이 최초로 진입했을 때
+        dropZone.addEventListener("dragenter", function(e) {
+            e.stopPropagation()
+            e.preventDefault()
+
+            toggleClass("dragenter")
+
+        })
+
+        // 드래그한 파일이 dropZone 영역을 벗어났을 때
+        dropZone.addEventListener("dragleave", function(e) {
+            e.stopPropagation()
+            e.preventDefault()
+
+            toggleClass("dragleave")
+
+        })
+
+        // 드래그한 파일이 dropZone 영역에 머물러 있을 때
+        dropZone.addEventListener("dragover", function(e) {
+            e.stopPropagation()
+            e.preventDefault()
+
+            toggleClass("dragover")
+
+        })
+
+        // 드래그한 파일이 드랍되었을 때
+        dropZone.addEventListener("drop", function(e) {
+            e.preventDefault()
+
+            toggleClass("drop")
+
+            var files = e.dataTransfer && e.dataTransfer.files
+            console.log(files)
+
+            if (files != null) {
+                if (files.length < 1) {
+                    alert("폴더 업로드 불가")
+                    return
+                }
+                selectFile(files)
+            } else {
+                alert("ERROR")
+            }
+
+        })
+
+
+        </script>
+        
+    </head>
+
+    <body> 
+
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="boot_js/bootstrap.min.js"></script>
+    
+    </body>
+</html>

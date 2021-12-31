@@ -1,4 +1,4 @@
-# DIGIGO 
+# DIGIGO (내용 추가 할게 생각 나시면 여기 작성해주셔도 좋습니다!)
 
 프로젝트 간단 설명
   1. [GAN MODEL](#GAN-MODEL)

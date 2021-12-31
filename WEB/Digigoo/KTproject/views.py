@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from.CNN_Pic_To_Place import Pic_to_place
 from.GAN_Drawn_To_Take_Picture import GAN_Drawn_To_Take_Picture
 def init(request):
-    return render(request, 'KTproject/init_page/init_page.html')
+    return render(request, 'KTproject/init_page.html')
 
 def pictureNew(request):
     if request.method =='POST':

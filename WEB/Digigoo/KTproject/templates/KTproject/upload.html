@@ -1,162 +1,151 @@
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
-        <title>uploadpage</title>
-        <!--라이브러리-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
-        <!--css-->
-       <style>
-        body {
+{% extends "base.html" %}
+{% load static %}
 
-            height: 100vh;
-            /* background-image: url('web_img/firstbackgroundimage.jpg'); */
-            background-size: 100% 100%;
-            background-repeat:no-repeat;
-            text-align: center;
-  
-        }
-        form {
-            margin: 10% 0 10% 0;
-        }
-        .container-fulid {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            flex-direction: row;   
-        }
-        #inputcol{
-            width: 20%;
-            height: 80vh;
-            border-style:dotted;
-            border-width: thick;
-            border-color:white;
-            margin: 5% 0 5% 0;
-        }
-        #blank {
-            height: 2vh;
-            width: 10vw;
-        }
-        .drop-zone {
-            width: 100%;
-            height: 200px;
-            border-style:dotted;
-            border-width: thick;
-            border-color:white;
-            background-color: skyblue;
-        }
-        .drop-zone-dragenter,
-        .drop-zone-dragover {
-            border: 10px solid blue;
-        }
-       </style>
-    </head>
 
-    <body> 
+{% block extrahead %}
+<style>
+    body {
 
-        <div class="container-fulid">
-            
-            <!--세 부분으로 나눔-->
-            <div class="item" id="blank"> </div>
-            <div class="col" id="inputcol">
-                
-                <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <br>그림을 입력해 주세요 : <input type="file" id="file" name="UserDrawnPicture"><br>
-                    <div class="drop-zone">파일을 여기로 드래그하세요.</div>
-                    <!--<p>{{form.UserDrawnPicture}}</p>-->
-                    <p>어떤 그림인가요? : {{form.Destination_choice}}</p>
-                    <input type="submit" class="btn" value="Submit"  >
-                </form>
-              
-            </div>
-            <div class="item" id="blank"> </div>
-            
-        </div>
+        height: 100vh;
+        /* background-image: url('web_img/firstbackgroundimage.jpg'); */
+        background-size: 100% 100%;
+        background-repeat:no-repeat;
+        text-align: center;
+
+    }
+    form {
+        margin: 10% 0 10% 0;
+    }
+    .container-fulid {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: row;   
+    }
+    #inputcol{
+        width: 20%;
+        height: 80vh;
+        border-style:dotted;
+        border-width: thick;
+        border-color:white;
+        margin: 5% 0 5% 0;
+    }
+    #blank {
+        height: 2vh;
+        width: 10vw;
+    }
+    .drop-zone {
+        width: 100%;
+        height: 200px;
+        border-style:dotted;
+        border-width: thick;
+        border-color:white;
+        background-color: skyblue;
+    }
+    .drop-zone-dragenter,
+    .drop-zone-dragover {
+        border: 10px solid blue;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fulid">
     
-        <!--javascript-->
-        <script>
-            var $file = document.getElementById("file")
-            var dropZone = document.querySelector(".drop-zone")
+    <!--세 부분으로 나눔-->
+    <div class="item" id="blank"> </div>
+    <div class="col" id="inputcol">
+        
+        <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
+            {% csrf_token %}
+            <br>그림을 입력해 주세요 : <input type="file" id="file" name="UserDrawnPicture"><br>
+            <div class="drop-zone">파일을 여기로 드래그하세요.</div>
+            <!--<p>{{form.UserDrawnPicture}}</p>-->
+            <p>어떤 그림인가요? : {{form.Destination_choice}}</p>
+            <input type="submit" class="btn" value="Submit"  >
+        </form>
+        
+    </div>
+    <div class="item" id="blank"> </div>
+    
+</div>
 
-            var toggleClass = function(className) {
+<!--javascript-->
+<script>
+    var $file = document.getElementById("file")
+    var dropZone = document.querySelector(".drop-zone")
 
-                console.log("current event: " + className)
+    var toggleClass = function(className) {
 
-                var list = ["dragenter", "dragleave", "dragover", "drop"]
+        console.log("current event: " + className)
 
-                for (var i = 0; i < list.length; i++) {
-                    if (className === list[i]) {
-                        dropZone.classList.add("drop-zone-" + list[i])
-                    } else {
-                        dropZone.classList.remove("drop-zone-" + list[i])
-                    }
-                }
+        var list = ["dragenter", "dragleave", "dragover", "drop"]
+
+        for (var i = 0; i < list.length; i++) {
+            if (className === list[i]) {
+                dropZone.classList.add("drop-zone-" + list[i])
+            } else {
+                dropZone.classList.remove("drop-zone-" + list[i])
             }
-            var showFiles = function(files) {
-                dropZone.innerHTML = ""
-                for(var i = 0, len = files.length; i < len; i++) {
-                    dropZone.innerHTML += "<p>" + files[i].name + "</p>"
-                }
+        }
+    }
+    var showFiles = function(files) {
+        dropZone.innerHTML = ""
+        for(var i = 0, len = files.length; i < len; i++) {
+            dropZone.innerHTML += "<p>" + files[i].name + "</p>"
+        }
+    }
+    var selectFile = function(files) {
+        // input file 영역에 드랍된 파일들로 대체
+        $file.files = files
+        showFiles($file.files)
+
+    }
+    $file.addEventListener("change", function(e) {
+        showFiles(e.target.files)
+    })
+    // 드래그한 파일이 최초로 진입했을 때
+    dropZone.addEventListener("dragenter", function(e) {
+        e.stopPropagation()
+        e.preventDefault()
+
+        toggleClass("dragenter")
+
+    })
+    // 드래그한 파일이 dropZone 영역을 벗어났을 때
+    dropZone.addEventListener("dragleave", function(e) {
+        e.stopPropagation()
+        e.preventDefault()
+
+        toggleClass("dragleave")
+
+    })
+    // 드래그한 파일이 dropZone 영역에 머물러 있을 때
+    dropZone.addEventListener("dragover", function(e) {
+        e.stopPropagation()
+        e.preventDefault()
+
+        toggleClass("dragover")
+
+    })
+    // 드래그한 파일이 드랍되었을 때
+    dropZone.addEventListener("drop", function(e) {
+        e.preventDefault()
+
+        toggleClass("drop")
+
+        var files = e.dataTransfer && e.dataTransfer.files
+        console.log(files)
+
+        if (files != null) {
+            if (files.length < 1) {
+                alert("폴더 업로드 불가")
+                return
             }
-            var selectFile = function(files) {
-                // input file 영역에 드랍된 파일들로 대체
-                $file.files = files
-                showFiles($file.files)
-
-            }
-            $file.addEventListener("change", function(e) {
-                showFiles(e.target.files)
-            })
-            // 드래그한 파일이 최초로 진입했을 때
-            dropZone.addEventListener("dragenter", function(e) {
-                e.stopPropagation()
-                e.preventDefault()
-
-                toggleClass("dragenter")
-
-            })
-            // 드래그한 파일이 dropZone 영역을 벗어났을 때
-            dropZone.addEventListener("dragleave", function(e) {
-                e.stopPropagation()
-                e.preventDefault()
-
-                toggleClass("dragleave")
-
-            })
-            // 드래그한 파일이 dropZone 영역에 머물러 있을 때
-            dropZone.addEventListener("dragover", function(e) {
-                e.stopPropagation()
-                e.preventDefault()
-
-                toggleClass("dragover")
-
-            })
-            // 드래그한 파일이 드랍되었을 때
-            dropZone.addEventListener("drop", function(e) {
-                e.preventDefault()
-
-                toggleClass("drop")
-
-                var files = e.dataTransfer && e.dataTransfer.files
-                console.log(files)
-
-                if (files != null) {
-                    if (files.length < 1) {
-                        alert("폴더 업로드 불가")
-                        return
-                    }
-                    selectFile(files)
-                } else {
-                    alert("ERROR")
-                }
-            })
-        </script>
-    </body>
-
-</html>
+            selectFile(files)
+        } else {
+            alert("ERROR")
+        }
+    })
+</script>
+{% endblock content %}

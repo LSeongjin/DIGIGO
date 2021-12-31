@@ -1,7 +1,7 @@
 # DIGIGO 
 
 프로젝트 간단 설명
-  1. GAN MODEL
+  1. [GAN MODEL](#GAN-MODEL)
   2. CNN MODEL
   3. WEB
 

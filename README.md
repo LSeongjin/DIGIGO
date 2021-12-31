@@ -2,8 +2,8 @@
 
 프로젝트 간단 설명
   1. [GAN MODEL](#GAN-MODEL)
-  2. CNN MODEL(#CNN-MODEL)
-  3. WEB(#WEB)
+  2. [CNN MODEL](#CNN-MODEL)
+  3. [WEB](#WEB)
 
 ### kt_intern5
 

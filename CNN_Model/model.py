@@ -180,7 +180,7 @@ class cnn_model(tf.keras.Model):
     x_t = self.relu2(x_t)
     x = self.add1([x, x_t])
     #print(x.shape)
-    x_t = self.conv3(x_t)
+    x_t = self.conv3(x)
     x_t = self.batchnorm3(x_t)
     x_t = self.relu3(x_t)
     x_t = self.conv4(x_t)

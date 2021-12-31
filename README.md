@@ -25,8 +25,7 @@
   ![GAN_Predict2](https://user-images.githubusercontent.com/68309988/147800082-32a5a3c3-4071-437b-95ef-faddfabac8d1.png)
   ![GAN_Predict3](https://user-images.githubusercontent.com/68309988/147800097-1104cd72-d155-41c1-8e0e-600d3e560f96.png)
 
- 
-### [CNN MODEL](https://github.com/LSeongjin/DIGIGO/blob/main/CNN_Model/model.ipynb)
+## [CNN MODEL](https://github.com/LSeongjin/DIGIGO/blob/main/CNN_Model/model.ipynb)
   (데이터셋, 구조 등, 분류 결과 첨부)
   
   #### DataSet

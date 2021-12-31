@@ -5,8 +5,10 @@
 ### GAN MODEL
   (데이터셋, 구조 등,  결과 이미지 첨부)
   
-  #### 이미지 생성
- ![image](https://user-images.githubusercontent.com/68309988/147800024-924c15a4-4cf4-4106-8f94-b021fda756f4.png)
+   #### 이미지 생성
+
+  ![GAN_Predict](https://user-images.githubusercontent.com/68309988/147800063-2b9ccd20-6938-412b-9e26-bd5e303cb385.png)
+
 
  
 ### CNN MODEL

@@ -21,7 +21,7 @@ input[type="file"] {
   display: none;
 }
 form {
-  margin: 10% 3% 5% 3%;
+  margin: 5% 3% 5% 3%;
   width: 100%;
 }
 .container-fulid {
@@ -45,7 +45,7 @@ form {
 }
 #text1 {
   font-weight: bold;
-  font-size: 7vw;
+  font-size: 5vw;
 }
 #inputcol {
   width: 20%;

@@ -1,5 +1,10 @@
 @import url("base.css");
 
+text{
+  font-family: 'Hi Melody', cursive;
+  color:white;
+  width:100%;
+}
 .container {
   width: 60%;
   height: 85vh;
@@ -47,4 +52,11 @@
   flex-basis: 25%;
   background-color: gray;
   height: 300px;
+}
+#text1{
+  font-weight: bold;
+  font-size: 4vw;
+}
+#text2{
+  color:blue;
 }

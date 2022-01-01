@@ -21,20 +21,43 @@
 </head>
 <body>
 
-    <div class="container" >
+    <div class="container-fulid">
         
         <!--세 부분으로 나눔-->
         <div class="item" id="blank"> </div>
         <div class="col" id="inputcol">
             
-            <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
-                {% csrf_token %}
-                <br>그림을 입력해 주세요 : <input type="file" id="file" name="UserDrawnPicture"><br>
-                <div class="drop-zone">파일을 여기로 드래그하세요.</div>
-                <!--<p>{{form.UserDrawnPicture}}</p>-->
-                <p>어떤 그림인가요? : {{form.Destination_choice}}</p>
-                <input type="submit" class="btn" value="Submit"  >
-            </form>
+            <div class="row" id="row1">
+                <text id="text1"> 어디로 떠나고 싶나요? </text>
+            </div>
+    
+            <div class="row" id="row2">
+                <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <input type="file" id="file" name="UserDrawnPicture">
+                    </div>
+                    
+                    <div class="row" id="row2"></div>
+    
+                    <div class="row">
+                        <div class="drop-zone"><text>drag&drop</text></div>
+                    </div>
+                    
+                    <div class="row" id="row2"></div>
+    
+                    <div class="row">
+                        <!--<p>{{form.UserDrawnPicture}}</p>-->
+                        <p>어떤 그림인가요? : {{form.Destination_choice}}</p>
+                        
+                    </div>
+    
+                    <div class="row">
+                        <input type="submit" class="btn" value="Submit"  >
+                    </div>
+    
+                </form>
+            </div>
             
         </div>
         <div class="item" id="blank"> </div>

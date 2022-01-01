@@ -1,3 +1,5 @@
+console.log('upload.js')
+
 var $file = document.getElementById("file")
 var dropZone = document.querySelector(".drop-zone")
 

@@ -40,6 +40,9 @@
                 <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
+                        <label class="file-button" for="file">
+                            Image Upload
+                        </label>
                         <input type="file" id="file" name="UserDrawnPicture">
                     </div>
                     
@@ -53,7 +56,7 @@
     
                     <div class="row">
                         <!--<p>{{form.UserDrawnPicture}}</p>-->
-                        <p>어떤 그림인가요? : {{form.Destination_choice}}</p>
+                        <p class="formDstination">어떤 그림인가요? : {{form.Destination_choice}}</p>
                         
                     </div>
     

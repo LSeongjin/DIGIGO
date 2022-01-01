@@ -9,6 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+    <!--글씨체-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+
     <title>Digigo UPLOAD</title>
 
     <style>
@@ -33,33 +38,65 @@
     </style>
 </head>
 <body>
+    <div class="container-fulid">          
+        <!--세 부분으로 나눔-->
+        <div class="item" id="blank"> </div>
 
-    <div class="container" >
-        <div class="row">
-                <div class="col-lg-8 panel panel-default">
-                    <img src={{userPicture.UserDrawnPicture.url}}></img>
-                    <!--
-                    <p>{{userPicture.UserDrawnPicture.url}}</p>
-                    <img src=/{{userPicture.ID}}GANed_Image.png/>
-                    -->
-                    <p>첫 번째 여행지 : {{userPicture.FirstTravel}}</p>
-                    <p>확률 : {{userPicture.FirstTravelRate}}</p>
-                    <p>두 번째 여행지 : {{userPicture.SecondTravel}}</p>
-                    <p>확률 : {{userPicture.SecondTravelRate}}</p>
-                    <p>세 번째 여행지 : {{userPicture.ThirdTravel}}</p>
-                    <p>확률 : {{userPicture.ThirdTravelRate}}</p>
+        <div class="col" id="inputcol">
+
+            <div class="row" id="row1">
+                <text id="text1"> 이곳인가요~? </text>
+            </div>
+            
+            <!--공간확보-->
+            <div class="row" id="row0"></div>
+
+            <div class="row" id="row2">
+                <!--이미지-->
+                <div class="col" id="left">
+                    <img alt="이미지를 보여주세요." src={{userPicture.UserDrawnPicture.url}}>
                 </div>
-                <div class="col-md-2"></div>
-        </div>
+                
+                <!--결과-->
+                <div class="col" id="right">
 
-        <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8 panel panel-default">
+                    <div class="row" id="row3">
+                        <!--여행지 이름-->
+                        <div class="row" id="row5"> <text id="text2">{{userPicture.FirstTravel}}</text> </div>
+                        <!--확률-->
+                        <div class="row" id="row5"> <text id="text3">{{userPicture.FirstTravelRate}}</text> </div>
+                    </div>
+
+
+                    <div class="row" id="row3">
+                        <!--여행지 이름-->
+                        <div class="row" id="row5"> <text id="text2">{{userPicture.SecondTravel}}</text> </div>
+                        <!--확률-->
+                        <div class="row" id="row5"> <text id="text3"> {{userPicture.SecondTravelRate}}</text> </div>
+                    </div>
+
+
+                    <div class="row" id="row3">
+                        <!--여행지 이름-->
+                        <div class="row" id="row5"> <text id="text2">{{userPicture.ThirdTravel}}</text> </div>
+                        <!--확률-->
+                        <div class="row" id="row5"> <text id="text3">{{userPicture.ThirdTravelRate}}</text> </div>
+                    </div>
 
                 </div>
-                <div class="col-md-2"></div>
+
+            </div>
+
+            <div class="row" id="row0"></div>
+            <div class="row" id="row4">
+                <div class="col" id="col1"></div>
+                <div class="col" id="col1"> <input type="submit" class="btn" value="상상 속 여행지 추천받기"> </div>
+                <div class="col" id="col1"></div>
+            </div>
+
         </div>
+        <div class="item" id="blank"> </div>
     </div>
-    
+
 </body>
 </html>

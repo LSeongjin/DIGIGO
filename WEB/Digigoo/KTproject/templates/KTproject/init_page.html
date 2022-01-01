@@ -13,41 +13,13 @@
     <!--글씨체-->
     <link href='https://fonts.googleapis.com/css?family=Shizuru' rel='stylesheet'>
 
-    <!--css-->
+    <script type="text/javascript" src="{% static 'admin/js/init_page.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'admin/css/init_page.css' %}">
     <style>
-      body {
-          height: 100vh;
-          background-image: url('{% static "admin/img/firstbackgroundimage.jpg" %}');
-          background-size: 100% 100%;
-          background-repeat:no-repeat;
-          text-align: center;
-      }
-      text{
-        width: 40vw; 
-        font-size: 10vw;
-        color:white;
-        font-family: 'Shizuru', cursive;
-      }
-      .sub{
-        font-size: 2vw;
-        text-align:right;
-      }
-      #nextbtn:hover{
-        color:red;
-      }
-      .container-fulid {
-        height: 30vh;
-        display: flex;
-        flex-direction: row;
-        margin: 4px;
-      }
-      .col {
-        width: 60vw;
-      }
+        body {
+        background-image: url('{% static "admin/img/firstbackgroundimage.jpg" %}');
+        }
     </style>
-
-    <!--javascript-->
-    <script></script>
 
   </head>
 

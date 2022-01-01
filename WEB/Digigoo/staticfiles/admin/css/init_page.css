@@ -1,0 +1,24 @@
+@import url("base.css");
+
+text {
+  width: 40vw;
+  font-size: 10vw;
+  color: white;
+  font-family: "Shizuru", cursive;
+}
+.sub {
+  font-size: 2vw;
+  text-align: right;
+}
+#nextbtn:hover {
+  color: red;
+}
+.container-fulid {
+  height: 30vh;
+  display: flex;
+  flex-direction: row;
+  margin: 4px;
+}
+.col {
+  width: 60vw;
+}

@@ -2,7 +2,49 @@
 
 .container {
   width: 60%;
-  height: 80vh;
+  height: 85vh;
   border-color: black;
   margin: 5% 20% 5% 20%;
+  overflow: auto;
+}
+.row {
+  font-size: 3em;
+  color: white;
+  font-weight: bold;
+}
+.row1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.resultImage > img {
+  height: 400px;
+  width: 500px;
+  max-width: 500px;
+  min-width: 500px;
+}
+.listContainer {
+  background-color: skyblue;
+  padding: 8px 0;
+  margin: 2% 1%;
+}
+.list {
+  margin: 4% 5%;
+}
+.listTitle {
+  font-size: 2em;
+  margin-bottom: 24px;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+.list > p {
+  font-size: 1.5em;
+  text-align: left;
+  font-weight: bold;
+}
+.item {
+  flex-basis: 25%;
+  background-color: gray;
+  height: 300px;
 }

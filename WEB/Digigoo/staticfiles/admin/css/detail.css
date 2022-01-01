@@ -67,12 +67,11 @@ text {
 #left {
   width: 3vw;
 }
-#right{
-    border-style: solid;
-    border-width: thick;
-    border-color: white;
-    width:5vw;
->>>>>>> c764068f3cf84ef14212382a90a7e1a00b67d510
+#right {
+  border-style: solid;
+  border-width: thick;
+  border-color: white;
+  width: 5vw;
 }
 .button,
 input[type="submit"],

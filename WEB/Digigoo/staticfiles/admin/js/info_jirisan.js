@@ -1,8 +1,8 @@
 console.log("info.js")
 
 var mapOptions = {
-    center: new naver.maps.LatLng(37.358879897225094, 127.11488138258703),  //지도의 초기 중심 좌표
-    zoom: 15, //지도의 초기 줌 레벨
+    center: new naver.maps.LatLng(35.33760874940102, 127.73064129122906),  //지도의 초기 중심 좌표
+    zoom: 10, //지도의 초기 줌 레벨
     zoomControl: true, //줌 컨트롤의 표시 여부
     zoomControlOptions: { //줌 컨트롤의 옵션
         position: naver.maps.Position.TOP_RIGHT
@@ -13,7 +13,7 @@ var map = new naver.maps.Map('map', mapOptions);
 
 // 지도 마커 생성
 var marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(37.358879897225094, 127.11488138258703),
+    position: new naver.maps.LatLng(35.33760874940102, 127.73064129122906),
     map: map
 });
 

@@ -9,11 +9,11 @@ from PIL import Image
 from django.http import HttpResponseRedirect, HttpResponse
 from.CNN_Pic_To_Place import Pic_to_place
 from.GAN_Drawn_To_Take_Picture import GAN_Drawn_To_Take_Picture
+
+
 def init(request):
     return render(request, 'KTproject/init_page.html')
 
-def info(request):
-    return render(request, 'KTproject/info.html')
 
 def pictureNew(request):
     if request.method =='POST':
@@ -60,3 +60,14 @@ def pictureNew(request):
     return render(request, 'KTproject/upload.html', {'form':form})
 
 
+def info(request, id):
+    print(id)
+    if id == 1:
+        information = 'KTproject/info_gyongpodae.html'
+    elif id == 2:
+        information = 'KTproject/info_jirisan.html'
+    elif id == 3:
+        information = 'KTproject/info3.html'
+    else:
+        information = 'KTproject/info4.html'
+    return render(request, information)

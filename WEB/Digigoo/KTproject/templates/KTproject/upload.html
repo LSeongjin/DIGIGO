@@ -16,8 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 
-    <script type="text/javascript" src="{% static 'admin/js/upload.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'admin/css/upload.css' %}">
+    <script type="text/javascript" src="{% static 'admin/js/upload.js' %}" defer></script>
     <style>
         body {
         background-image: url('{% static "admin/img/backgroundimage.jpg" %}');
@@ -46,10 +46,10 @@
                         <input type="file" id="file" name="UserDrawnPicture">
                     </div>
                     
-                    <div class="row" id="row2"></div>
-    
                     <div class="row">
-                        <div class="drop-zone"><text>drag&drop</text></div>
+                        <div class="drop-zone">
+                            <text>drag&drop</text>
+                        </div>
                     </div>
                     
                     <div class="row" id="row2"></div>

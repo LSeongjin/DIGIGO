@@ -12,6 +12,9 @@ from.GAN_Drawn_To_Take_Picture import GAN_Drawn_To_Take_Picture
 def init(request):
     return render(request, 'KTproject/init_page.html')
 
+def info(request):
+    return render(request, 'KTproject/info.html')
+
 def pictureNew(request):
     if request.method =='POST':
         form = PictureForm(request.POST)

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <title>info</title>
+        <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ax1eesyux3"></script>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-lg-8 panel panel-default">
+                내가 추천받은 여행지는?
+            </div>
+        </div>
+
+        <div id="map" style="width:500px;height:500px;"></div>
+
+        <div class="row">
+            <div class="col-lg-8 panel panel-default">
+                <img src="{% static 'admin/img/gyongpodae.jpg' %}" alt="">
+            </div>
+        </div>
+
+        <script>
+
+        var mapOptions = {
+            center: new naver.maps.LatLng(37.358879897225094, 127.11488138258703),  //지도의 초기 중심 좌표
+            zoom: 15, //지도의 초기 줌 레벨
+            zoomControl: true, //줌 컨트롤의 표시 여부
+            zoomControlOptions: { //줌 컨트롤의 옵션
+                position: naver.maps.Position.TOP_RIGHT
+            }
+        };
+
+        var map = new naver.maps.Map('map', mapOptions);
+
+        // 지도 마커 생성
+        var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(37.358879897225094, 127.11488138258703),
+            map: map
+        });
+
+        //setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
+        map.setOptions("mapTypeControl", true); //지도 유형 컨트롤의 표시 여부
+
+        naver.maps.Event.addListener(map, 'zoom_changed', function (zoom) {
+            console.log('zoom:' + zoom);
+        });
+
+        </script>
+    </body>
+</html>

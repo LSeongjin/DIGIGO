@@ -1,6 +1,6 @@
 @import url("base.css");
 
-text {
+text,a{
   width: 40vw;
   font-size: 10vw;
   color: white;

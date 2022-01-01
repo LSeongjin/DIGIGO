@@ -40,6 +40,9 @@ form {
 #row2 {
   height: 1vh;
 }
+#row3{
+  height: 10%;
+}
 #text1 {
   font-weight: bold;
   font-size: 7vw;
@@ -72,7 +75,7 @@ form {
 .formDstination {
   padding: 6px 25px;
   border-radius: 4px;
-  color: black;
+  color: white;
   cursor: pointer;
   font-family: "Hi Melody", cursive;
   font-weight: bold;
@@ -96,5 +99,5 @@ input[type="button"] {
   max-width: 500px;
   min-width: 100px;
   margin: 5% 35% 0;
-  font-size: 2em;
+  vertical-align: middle;
 }

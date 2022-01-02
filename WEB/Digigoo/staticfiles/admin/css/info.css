@@ -7,7 +7,6 @@ text {
 .container-fulid {
   width: 70%;
   height: 83vh;
-  border-color: black;
   margin: 5% 15% 5% 15%;
   overflow: auto;
   padding: 0 2%;
@@ -26,19 +25,17 @@ text {
 #text2 {
   color: blue;
 }
+#map, #resultimage{
+  width:45%;
+  
+}
 .row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.resultImage > img {
-  height: 400px;
-  width: 500px;
-  max-width: 500px;
-  min-width: 500px;
-}
 .listContainer {
-  background-color: skyblue;
+  background-color: rgba(173, 243, 255,0.5);
   padding: 8px 0;
   margin-top: 2%;
 }
@@ -58,8 +55,9 @@ text {
   font-weight: bold;
 }
 .item {
-  flex-basis: 25%;
-  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .arountTitle {
   font-size: 2em;

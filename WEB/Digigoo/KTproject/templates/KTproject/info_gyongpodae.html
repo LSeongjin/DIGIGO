@@ -33,15 +33,20 @@
 </head>
 <body>
     <div class="container-fulid" >
-        <div id="detailTitle">
-            <text id="text1"> 여행지로 <text id="text2">경포해변</text> 어떠신가요? </text>
-        </div>
 
         <div class="row">
-            <div class="resultImage">
-                <img src="{% static 'admin/img/gyongpo.jpg' %}" alt="">
+            <div id="detailTitle">
+                <text id="text1"> 여행지로 <text id="text2">경포해변</text> 어떠신가요? </text>
             </div>
-            <div id="map" style="width:600px;height:400px;"></div>
+        </div>
+
+        <div class="item">
+            <!--지도-->
+           
+            <div id="map" style="height:400px;"></div>
+            <!--사진-->
+            <img id="resultimage" src="{% static 'admin/img/gyongpo.jpg' %}" alt="">
+            
         </div>
 
         <div class="listContainer">
@@ -63,28 +68,36 @@
             <div class="list">
                 <div class="listTitle">주변여행지</div>
                 <div class="row">
+
                     <div class="item">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/gyongpodae.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">경포대</div>
                     </div>
+
                     <div class="item">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/sachun.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">사천해변</div>
                     </div>
+
                     <div class="item">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/Anmok.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">안목해변</div>
                     </div>
+
                 </div>
+                
             </div>  
 
-        </div>      
+        </div> 
+        
+      
+        
     </div>
 </body>
 </html>

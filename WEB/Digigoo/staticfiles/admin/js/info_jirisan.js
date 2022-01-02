@@ -1,4 +1,4 @@
-console.log("info.js")
+console.log("info_jirisan.js")
 
 var mapOptions = {
     center: new naver.maps.LatLng(35.33760874940102, 127.73064129122906),  //지도의 초기 중심 좌표

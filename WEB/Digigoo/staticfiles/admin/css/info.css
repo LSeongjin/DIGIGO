@@ -7,7 +7,7 @@ text {
 .t1{
   font-weight:bold;
   font-size:2em;
-  color:#02c3d1;
+  color:black;
 }
 .container-fulid {
   width: 70%;
@@ -30,7 +30,6 @@ text {
 #text2 {
   color: blue;
 }
-
 .nearby_place {
   margin: 2% 0% 2% 0%;
 }
@@ -77,9 +76,10 @@ text {
   height:40%;
 }
 .arountTitle {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: bold;
   padding: 8px 0;
+  
 }
 .aroundImage {
   width: 47%;

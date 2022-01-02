@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{% static 'admin/css/info.css' %}">
     <style>
         body {
-            height: 100vh;
+            height: 100%;
             background-image: url('{% static "admin/img/backgroundimage.jpg" %}');
             background-size: 100% 100%;
             background-repeat:no-repeat;
@@ -33,15 +33,28 @@
 </head>
 <body>
     <div class="container-fulid" >
-        <div id="detailTitle">
-            <text id="text1"> 여행지로 <text id="text2">남산타워</text> 어떠신가요? </text>
+        
+        <div class="row1">
+            <div id="detailTitle">
+                <text id="text1"> 여행지로 <text id="text2">남산타워</text> 어떠신가요? </text>
+            </div>
         </div>
 
-        <div class="row">
-            <div class="resultImage">
-                <img src="{% static 'admin/img/tower.jpg' %}" alt="">
+        <div class="row1">
+            <div class="item">
+                <text class="t1">[찾아가는길]</text>
             </div>
-            <div id="map" style="width:600px;height:400px;"></div>
+            <div class="item">
+                <text class="t1">[사진]</text>
+            </div>
+        </div>
+
+        <div class="item" id="item1">
+            <!--지도-->
+            <div id="map" ></div>
+            <!--사진-->
+            <img id="resultimage" src="{% static 'admin/img/tower.jpg' %}" alt="">
+            
         </div>
 
         <div class="listContainer">
@@ -63,20 +76,25 @@
     
             <div class="list">
                 <div class="listTitle">주변여행지</div>
-                <div class="row">
-                    <div class="item">
+                <div id="row2">
+                    <!--주변여행지1-->
+                    <div class="item nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/bongsudae.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">남산봉수대</div>
                     </div>
-                    <div class="item">
+
+                    <!--주변여행지2-->
+                    <div class="item nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/gil.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">서울성곽</div>
                     </div>
-                    <div class="item">
+
+                    <!--주변여행지3-->
+                    <div class="item nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/ginyeom.jpg' %}" alt="">
                         </div>

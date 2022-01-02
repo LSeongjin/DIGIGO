@@ -6,8 +6,7 @@
   3. [WEB](#WEB)
 
 ### kt_intern5
-
-조원 이름???
+이성진 손일수 성혜림 송승원 정찬휘 조인호 조승현 이지수 최예지
 
 ## [GAN MODEL](https://github.com/LSeongjin/DIGIGO/blob/main/GAN_Model/GAN_DIGIGO_KT_mountain.ipynb)
 

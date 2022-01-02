@@ -67,7 +67,7 @@ def info(request, id):
     elif id == 2:
         information = 'KTproject/info_jirisan.html'
     elif id == 3:
-        information = 'KTproject/info3.html'
+        information = 'KTproject/info_namsantower.html'
     else:
-        information = 'KTproject/info4.html'
+        information = 'KTproject/info_jeju.html'
     return render(request, information)

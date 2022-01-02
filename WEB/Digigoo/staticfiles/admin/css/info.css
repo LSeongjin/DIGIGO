@@ -4,6 +4,11 @@ text {
   color: white;
   width: 100%;
 }
+.t1{
+  font-weight:bold;
+  font-size:2em;
+  color:#02c3d1;
+}
 .container-fulid {
   width: 70%;
   height: 90%;
@@ -25,12 +30,8 @@ text {
 #text2 {
   color: blue;
 }
-#text3{
-  font-weight:bold;
-  font-size:2em;
-  color:#02c3d1;
-}
-#nearby_place{
+
+.nearby_place {
   margin: 2% 0% 2% 0%;
 }
 #map, #resultimage{
@@ -42,7 +43,7 @@ text {
   flex-direction: column;
   justify-content: space-between;
 }
-.row {
+.row1 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

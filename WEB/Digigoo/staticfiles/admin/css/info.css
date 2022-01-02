@@ -33,9 +33,9 @@ text {
 }
 .resultImage > img {
   height: 400px;
-  width: 600px;
-  max-width: 600px;
-  min-width: 600px;
+  width: 500px;
+  max-width: 500px;
+  min-width: 500px;
 }
 .listContainer {
   background-color: skyblue;

@@ -60,14 +60,15 @@ def pictureNew(request):
     return render(request, 'KTproject/upload.html', {'form':form})
 
 
-def info(request, id):
-    print(id)
-    if id == 1:
+def info(request, ID):
+    userPicture = get_object_or_404(KTproject.models.UserPicture, ID=ID)
+    id = userPicture.FirstTravel
+    if id == "Ocean":
         information = 'KTproject/info_gyongpodae.html'
-    elif id == 2:
+    if id == "Mountain":
         information = 'KTproject/info_jirisan.html'
-    elif id == 3:
+    if id == "Tower":
         information = 'KTproject/info_namsantower.html'
-    else:
+    if id == "PLain":
         information = 'KTproject/info_jeju.html'
     return render(request, information)

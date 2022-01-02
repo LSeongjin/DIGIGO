@@ -30,47 +30,74 @@
             text-align: center;
         }
 
+        .container{
+            width: 60%;
+            height: 80vh;
+            border-color:black;
+            margin: 5% 20% 5% 20%;
+        }
     </style>
 </head>
 <body>
-    <div class="container-fulid">    
-        
-        <div id="detailTitle">
-            <text id="text1"> 이곳인가요? </text>
-        </div>
-        
-        <div id="contentContainer">
-            <div id="left">
-                <img alt="이미지를 보여주세요." src={{userPicture.UserDrawnPicture.url}}>
-            </div>
+    <div class="container-fulid">          
+        <!--세 부분으로 나눔-->
+        <div class="item" id="blank"> </div>
 
-            <!--세 부분으로 나눔-->
-            <div id="right"> 
-                <div class="item">
-                    <!--여행지 이름-->
-                    <div> <text id="text2">{{userPicture.FirstTravel}}</text> </div>
-                    <!--확률-->
-                    <div> <text id="text3">{{userPicture.FirstTravelRate}}</text> </div>
-                </div>
-                <div class="item">
-                    <!--여행지 이름-->
-                    <div> <text id="text2">{{userPicture.SecondTravel}}</text> </div>
-                    <!--확률-->
-                    <div> <text id="text3"> {{userPicture.SecondTravelRate}}</text> </div>
-                </div>
-                <div class="item">
-                    <!--여행지 이름-->
-                    <div> <text id="text2">{{userPicture.ThirdTravel}}</text> </div>
-                    <!--확률-->
-                    <div> <text id="text3">{{userPicture.ThirdTravelRate}}</text> </div>
-                </div>
-            </div>
-        </div> 
+        <div class="col" id="inputcol">
 
-        <div id="btnContainer">
-            <input type="submit" class="btn" value="상상 속 여행지 추천받기">
-        </div>
+            <div class="row" id="row1">
+                <text id="text1"> 이곳인가요~? </text>
+            </div>
             
+            <!--공간확보-->
+            <div class="row" id="row0"></div>
+
+            <div class="row" id="row2">
+                <!--이미지-->
+                <div class="col" id="left">
+                    <img alt="이미지를 보여주세요." src=/image/{{ userPicture.ID }}GANed_Image.png>
+                </div>
+                
+                <!--결과-->
+                <div class="col" id="right">
+
+                    <div class="row" id="row3">
+                        <!--여행지 이름-->
+                        <div class="row" id="row5"> <text id="text2">{{userPicture.FirstTravel}}</text> </div>
+                        <!--확률-->
+                        <div class="row" id="row5"> <text id="text3">{{userPicture.FirstTravelRate}}</text> </div>
+                    </div>
+
+
+                    <div class="row" id="row3">
+                        <!--여행지 이름-->
+                        <div class="row" id="row5"> <text id="text2">{{userPicture.SecondTravel}}</text> </div>
+                        <!--확률-->
+                        <div class="row" id="row5"> <text id="text3"> {{userPicture.SecondTravelRate}}</text> </div>
+                    </div>
+
+
+                    <div class="row" id="row3">
+                        <!--여행지 이름-->
+                        <div class="row" id="row5"> <text id="text2">{{userPicture.ThirdTravel}}</text> </div>
+                        <!--확률-->
+                        <div class="row" id="row5"> <text id="text3">{{userPicture.ThirdTravelRate}}</text> </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row" id="row0"></div>
+            <div class="row" id="row4">
+                <div class="col" id="col1"></div>
+                <div class="col" id="col1"> <input type="submit" class="btn" value="상상 속 여행지 추천받기"> </div>
+                <div class="col" id="col1"></div>
+            </div>
+
+        </div>
+        <div class="item" id="blank"> </div>
+    </div>
 
 </body>
 </html>

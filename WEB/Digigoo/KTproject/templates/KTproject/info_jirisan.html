@@ -10,33 +10,84 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ax1eesyux3"></script>
-
+    
+    <!--글씨체-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+  
     <title>Digigo UPLOAD</title>
 
     <script type="text/javascript" src="{% static 'admin/js/info_jirisan.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'admin/css/info.css' %}">
     <style>
         body {
-        background-image: url('{% static "admin/img/backgroundimage.jpg" %}');
+            height: 100vh;
+            background-image: url('{% static "admin/img/backgroundimage.jpg" %}');
+            background-size: 100% 100%;
+            background-repeat:no-repeat;
+            text-align: center;
+            font-family: "Hi Melody", cursive;
         }
     </style>
 </head>
 <body>
-
-    <div class="container" >
-        <div class="row">
-            <div class="col-lg-8 panel panel-default">
-                내가 추천받은 여행지는? - 지리산
-            </div>
+    <div class="container-fulid" >
+        <div id="detailTitle">
+            <text id="text1"> 여행지로 <text id="text2">지리산</text> 어떠신가요? </text>
         </div>
 
-        <div id="map" style="width:600px;height:300px;"></div>
-
         <div class="row">
-            <div class="col-lg-8 panel panel-default">
-                <img src="{% static 'admin/img/gyongpodae.jpg' %}" alt="" width="300px" height="200px">
+            <div class="resultImage">
+                <img src="{% static 'admin/img/jirisan.jpg' %}" alt="">
             </div>
+            <div id="map" style="width:600px;height:400px;"></div>
         </div>
+
+        <div class="listContainer">
+            <div class="list">
+                <div class="listTitle">위치</div>
+                <p>
+                    경상남도 함양군 마천면 추성리 <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EC%A7%80%EB%A6%AC%EC%82%B0+%EA%B8%B8%EC%B0%BE%EA%B8%B0&oquery=%EA%B2%BD%ED%8F%AC%ED%95%B4%EB%B3%80+%EA%B8%B8%EC%B0%BE%EA%B8%B0&tqi=hOZlFsp0J14ss5YBT3Vssssss1h-428307"> [ 경로 검색 ] </a> 
+                </p>
+            </div>
+
+            <div class="list">
+                <div class="listTitle">관광가이드</div>
+                <p>
+                    지리산은 대한민국 내륙에서 최고봉인 천왕봉을 주봉으로 하며 1916.77m높이.
+산세가 험준하지 않고 숲이 울창하여 동식물 보존이 가장 잘 되어 있는 신비의 산이다.
+남북으로 흐르는 맑은 물과 멋진 경치는 지리산의 자랑이다.
+
+                </p>
+            </div>
+    
+    
+            <div class="list">
+                <div class="listTitle">주변여행지</div>
+                <div class="row">
+                    <div class="item">
+                        <div class="aroundImage">
+                            <img src="{% static 'admin/img/rail.png' %}" alt="">
+                        </div>
+                        <div class="arountTitle">섬진강기차마을(곡성)</div>
+                    </div>
+                    <div class="item">
+                        <div class="aroundImage">
+                            <img src="{% static 'admin/img/camp.png' %}" alt="">
+                        </div>
+                        <div class="arountTitle">방화동가족휴양촌(장수)</div>
+                    </div>
+                    <div class="item">
+                        <div class="aroundImage">
+                            <img src="{% static 'admin/img/hwayeom.png' %}" alt="">
+                        </div>
+                        <div class="arountTitle">화엄사(구례)</div>
+                    </div>
+                </div>
+            </div>  
+
+        </div>      
     </div>
 </body>
 </html>

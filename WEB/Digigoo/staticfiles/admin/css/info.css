@@ -6,7 +6,7 @@ text {
 }
 .container-fulid {
   width: 70%;
-  height: 83vh;
+  height: 90%;
   margin: 5% 15% 5% 15%;
   overflow: auto;
   padding: 0 2%;
@@ -30,18 +30,16 @@ text {
   font-size:2em;
   color:#02c3d1;
 }
+#nearby_place{
+  margin: 2% 0% 2% 0%;
+}
 #map, #resultimage{
   width:45%;
-  
+  height:100%;
 }
 #row2 {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-#nearby_place{
- 
-  display: flex;
   justify-content: space-between;
 }
 .row {
@@ -74,14 +72,17 @@ text {
   flex-direction: row;
   justify-content: space-between;
 }
+#item1{
+  height:40%;
+}
 .arountTitle {
   font-size: 2em;
   font-weight: bold;
   padding: 8px 0;
 }
 .aroundImage {
-  width:47%;
-  height: 300px;
+  width: 47%;
+  height: 280px;
 }
 .aroundImage > img {
   height: 100%;

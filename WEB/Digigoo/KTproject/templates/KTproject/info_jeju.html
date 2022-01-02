@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{% static 'admin/css/info.css' %}">
     <style>
         body {
-            height: 100vh;
+            height: 100%;
             background-image: url('{% static "admin/img/backgroundimage.jpg" %}');
             background-size: 100% 100%;
             background-repeat:no-repeat;
@@ -49,9 +49,9 @@
             </div>
         </div>
 
-        <div class="item">
+        <div class="item" id="item1">
             <!--지도-->
-            <div id="map" style="height:400px;"></div>
+            <div id="map" ></div>
             <!--사진-->
             <img id="resultimage" src="{% static 'admin/img/jeju.jpg' %}" alt="">
             
@@ -76,25 +76,30 @@
             <div class="list">
                 <div class="listTitle">주변여행지</div>
                 <div class="row" id="row2">
-
+                    <!--주변여행지1-->
                     <div class="item" id="nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/hamduck.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">함덕 서우봉 해변</div>
                     </div>
+
+                    <!--주변여행지2-->
                     <div class="item" id="nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/huyang.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">제주 절물 자연 휴양림</div>
                     </div>
+
+                    <!--주변여행지3-->
                     <div class="item" id="nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/hanrasan.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">한라산 성판악</div>
                     </div>
+
                 </div>
             </div>  
 

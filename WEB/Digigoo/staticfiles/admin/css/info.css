@@ -1,62 +1,75 @@
 @import url("base.css");
 
-text{
-  font-family: 'Hi Melody', cursive;
-  color:white;
-  width:100%;
+text {
+  color: white;
+  width: 100%;
 }
-.container {
-  width: 60%;
-  height: 85vh;
+.container-fulid {
+  width: 70%;
+  height: 83vh;
   border-color: black;
-  margin: 5% 20% 5% 20%;
+  margin: 5% 15% 5% 15%;
   overflow: auto;
+  padding: 0 2%;
 }
-.row {
+#detailTitle {
+  width: 100%;
+  text-align: center;
   font-size: 3em;
   color: white;
   font-weight: bold;
 }
-.row1 {
+#text1 {
+  font-weight: bold;
+  font-size: 4vw;
+}
+#text2 {
+  color: blue;
+}
+.row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 .resultImage > img {
   height: 400px;
-  width: 500px;
-  max-width: 500px;
-  min-width: 500px;
+  width: 600px;
+  max-width: 600px;
+  min-width: 600px;
 }
 .listContainer {
   background-color: skyblue;
   padding: 8px 0;
-  margin: 2% 1%;
+  margin-top: 2%;
 }
 .list {
   margin: 4% 5%;
 }
 .listTitle {
-  font-size: 2em;
+  font-size: 2.4em;
   margin-bottom: 24px;
   color: white;
   font-weight: bold;
   text-align: left;
 }
 .list > p {
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: left;
   font-weight: bold;
 }
 .item {
   flex-basis: 25%;
-  background-color: gray;
+  background-color: rgb(255, 255, 255);
+}
+.arountTitle {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 8px 0;
+}
+.aroundImage {
   height: 300px;
 }
-#text1{
-  font-weight: bold;
-  font-size: 4vw;
-}
-#text2{
-  color:blue;
+.aroundImage > img {
+  height: 100%;
+  width: 100%;
 }

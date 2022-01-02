@@ -22,25 +22,36 @@
     <link rel="stylesheet" href="{% static 'admin/css/info.css' %}">
     <style>
         body {
-        background-image: url('{% static "admin/img/backgroundimage.jpg" %}');
+            height: 100vh;
+            background-image: url('{% static "admin/img/backgroundimage.jpg" %}');
+            background-size: 100% 100%;
+            background-repeat:no-repeat;
+            text-align: center;
+            font-family: "Hi Melody", cursive;
         }
     </style>
 </head>
 <body>
-
     <div class="container-fulid" >
-        <div class="row">
-            <text id="text1"> 여행지로 <text id="text2">경포대</text> 어떠신가요? </text>
+        <div id="detailTitle">
+            <text id="text1"> 여행지로 <text id="text2">경포해변</text> 어떠신가요? </text>
         </div>
 
-        <div class="row1">
-            <div id="map" style="width:700px;height:400px;"></div>
+        <div class="row">
             <div class="resultImage">
-                <img src="{% static 'admin/img/gyongpodae.jpg' %}" alt="">
+                <img src="{% static 'admin/img/gyongpo.jpg' %}" alt="">
             </div>
+            <div id="map" style="width:600px;height:400px;"></div>
         </div>
 
         <div class="listContainer">
+            <div class="list">
+                <div class="listTitle">위치</div>
+                <p>
+                    강원 강릉시 강문동  산1-1 <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EA%B2%BD%ED%8F%AC%ED%95%B4%EB%B3%80+%EA%B8%B8%EC%B0%BE%EA%B8%B0&oquery=%EA%B2%BD%ED%8F%AC%ED%95%B4%EB%B3%80&tqi=hOZlQdp0YidssZ3JQTRssssstxG-348205"> [ 경로 검색 ] </a> 
+                </p>
+            </div>
+
             <div class="list">
                 <div class="listTitle">관광가이드</div>
                 <p>
@@ -51,15 +62,24 @@
     
             <div class="list">
                 <div class="listTitle">주변여행지</div>
-                <div class="row1">
+                <div class="row">
                     <div class="item">
-                        경포대
+                        <div class="aroundImage">
+                            <img src="{% static 'admin/img/gyongpodae.jpg' %}" alt="">
+                        </div>
+                        <div class="arountTitle">경포대</div>
                     </div>
                     <div class="item">
-                        사천해변
+                        <div class="aroundImage">
+                            <img src="{% static 'admin/img/sachun.jpg' %}" alt="">
+                        </div>
+                        <div class="arountTitle">사천해변</div>
                     </div>
                     <div class="item">
-                        안목해변
+                        <div class="aroundImage">
+                            <img src="{% static 'admin/img/Anmok.jpg' %}" alt="">
+                        </div>
+                        <div class="arountTitle">안목해변</div>
                     </div>
                 </div>
             </div>  

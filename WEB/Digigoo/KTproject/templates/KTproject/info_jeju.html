@@ -33,15 +33,28 @@
 </head>
 <body>
     <div class="container-fulid" >
-        <div id="detailTitle">
-            <text id="text1"> 여행지로 <text id="text2">제주 산굼부리</text> 어떠신가요? </text>
+       
+        <div class="row">
+            <div id="detailTitle">
+                <text id="text1"> 여행지로 <text id="text2">제주 산굼부리</text> 어떠신가요? </text>
+            </div>
         </div>
 
         <div class="row">
-            <div class="resultImage">
-                <img src="{% static 'admin/img/jeju.jpg' %}" alt="">
+            <div class="item">
+                <text id="text3">[찾아가는길]</text>
             </div>
-            <div id="map" style="width:600px;height:400px;"></div>
+            <div class="item">
+                <text id="text3">[사진]</text>
+            </div>
+        </div>
+
+        <div class="item">
+            <!--지도-->
+            <div id="map" style="height:400px;"></div>
+            <!--사진-->
+            <img id="resultimage" src="{% static 'admin/img/jeju.jpg' %}" alt="">
+            
         </div>
 
         <div class="listContainer">
@@ -62,20 +75,21 @@
     
             <div class="list">
                 <div class="listTitle">주변여행지</div>
-                <div class="row">
-                    <div class="item">
+                <div class="row" id="row2">
+
+                    <div class="item" id="nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/hamduck.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">함덕 서우봉 해변</div>
                     </div>
-                    <div class="item">
+                    <div class="item" id="nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/huyang.jpg' %}" alt="">
                         </div>
                         <div class="arountTitle">제주 절물 자연 휴양림</div>
                     </div>
-                    <div class="item">
+                    <div class="item" id="nearby_place">
                         <div class="aroundImage">
                             <img src="{% static 'admin/img/hanrasan.jpg' %}" alt="">
                         </div>

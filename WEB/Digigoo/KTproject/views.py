@@ -65,10 +65,10 @@ def info(request, ID):
     id = userPicture.FirstTravel
     if id == "Ocean":
         information = 'KTproject/info_gyongpodae.html'
-    if id == "Mountain":
+    elif id == "Mountain":
         information = 'KTproject/info_jirisan.html'
-    if id == "Tower":
+    elif id == "LandMark":
         information = 'KTproject/info_namsantower.html'
-    if id == "PLain":
+    else:
         information = 'KTproject/info_jeju.html'
     return render(request, information)

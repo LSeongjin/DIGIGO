@@ -7,5 +7,5 @@ from django.views.generic.detail import DetailView
 urlpatterns = [
     path('',init, name="init"),
     path('pictureNew', pictureNew, name="pictureNew"),
-    path('info/<int:id>', info, name='info'),
+    path('info/<int:ID>', info, name='info'),
 ]

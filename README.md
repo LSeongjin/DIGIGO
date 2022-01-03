@@ -13,10 +13,10 @@
   #### DataSet  
   |종류|갯수|
   |:---:|---|
-  |*산*|000|
-  |*타워*|000|
-  |*바다*|000|
-  |*억새*|000| 
+  |*산*|50|
+  |*타워*|50|
+  |*바다*|50|
+  |*억새*|50| 
   
   #### 이미지 학습 및 생성
 
@@ -30,18 +30,17 @@
   #### DataSet
   |종류|갯수|
   |:---:|---|
-  |*산*|000|
-  |*타워*|000|
-  |*바다*|000|
-  |*억새*|000|
+  |*산*|200|
+  |*타워*|200|
+  |*바다*|200|
+  |*억새*|200|
   
   #### Model Architecture
   ![CNN_Model](https://github.com/LSeongjin/DIGIGO/blob/main/CNN_Model/CNN_model_architecture.png)
   
 ### [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
-  (웹 페이지 사용방법, 페이지 설명)
   
-  [prototype url](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
+  [DIGIGO LINK](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
   
   1. 첫 페이지
   ![첫화면](https://user-images.githubusercontent.com/52199642/147894461-3fd62bd2-a8bf-423b-b1bf-9076e197075f.PNG)

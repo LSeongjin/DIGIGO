@@ -39,7 +39,7 @@
   #### Model Architecture
   ![CNN_Model](https://github.com/LSeongjin/DIGIGO/blob/main/CNN_Model/CNN_model_architecture.png)
   
-### [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
+## [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
   
   [DIGIGO LINK](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
   

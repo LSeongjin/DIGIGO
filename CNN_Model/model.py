@@ -52,8 +52,10 @@ cd gdrive/MyDrive/KT
 
 """
 
+folder = "Image/*"
+
 # get img list from path
-image_folders = sorted(glob.glob("Image/*"))
+image_folders = sorted(glob.glob(folder))
 
 image_folders.remove('Image/info')
 
@@ -67,8 +69,6 @@ for folder in image_folders:
   files.extend(temp)
   each_class_num.append(len(temp))
 
-each_class_num
-
 # read image from files list & reshape
 # train_img shape : ( , 256, 256, 3)
 train_img = np.array(np.array([cv2.resize(cv2.imread(file, cv2.IMREAD_COLOR), dsize=(256, 256),
@@ -78,22 +78,11 @@ image_num = train_img.shape[0]
 labels = 4
 train_label = np.array(list(chain.from_iterable((repeat(n, k) for (n, k) in zip(range(labels), each_class_num)))))
 
-print(train_img.shape)
-print(train_img[0].shape)
-print(train_label.shape)
-
 # normalize
 train_img = train_img / (256.0)
 
 x_train, x_test, y_train, y_test = train_test_split(train_img, train_label, test_size=0.1, stratify=train_label, random_state=34)
-x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.1, stratify=y_train, random_state=12)
-
-print(x_train.shape)
-print(y_train.shape)
-print(x_test.shape)
-print(y_test.shape)
-print(x_val.shape)
-print(y_val.shape)
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.3, stratify=y_train, random_state=12)
 
 """# Model Architecture
 
@@ -203,19 +192,14 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 epoch = 50
 batch = 10
 
-print(x_train.shape)
-print(y_train.shape)
-print(x_test.shape)
-print(y_test.shape)
-print(x_val.shape)
-print(y_val.shape)
-
 filename = 'checkpoint.ckpt'
 checkpoint = ModelCheckpoint(filename, monitor='val_loss', verbose=1, save_best_only=True, save_weights_only=True)
 earlystopping = EarlyStopping(monitor='val_loss', patience=10)
 # , callbacks=[checkpoint, earlystopping]
 
 history = model.fit(x_train, y_train, epochs=epoch, validation_data=(x_val, y_val) , callbacks=[checkpoint, earlystopping])
+
+"""#Load Model"""
 
 model_fi = cnn_model()
 model_fi.load_weights(filename)
@@ -224,6 +208,10 @@ model_fi.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metri
 results = model_fi.evaluate(x_test, y_test)
 
 print('test loss, test acc:', results)
+
+model_fi.summary()
+
+"""#Train history Graph"""
 
 import matplotlib.pyplot as plt
 plt.plot(history.history['accuracy'])
@@ -242,295 +230,35 @@ plt.ylabel('Loss')
 plt.legend(['Train', 'Val'], loc='upper left')
 plt.show()
 
-model_fi.summary()
+"""# Save model"""
 
-model_fi(x_train[13].reshape(1, 256, 256, 3))
+model_fi.save("cnnmodel_220103_rev")
 
-y_train[13]
+"""# Loading Model"""
 
-model.save("cnnmodel_211230")
+import tensorflow as tf
+import numpy as np
+import cv2
 
-"""#Dump"""
+from google.colab import drive
+drive.mount('/content/gdrive')
 
-model(train_img)
+cd gdrive/MyDrive/KT
 
-# def residual_unit(self, x, in_channel, out_channel, kernel_size):
-  #   if in_channel == out_channel:
-  #     res1 = layers.Conv2D(out_channel, kernel_size, padding='same', strides=(1, 1))
-  #   else:
-  #     res1 = layers.Conv2D(out_channel, kernel_size, padding='same', strides=(2, 2))
-  #   batch1 = layers.BatchNormalization()
-  #   relu1 = layers.ReLU()
-  #   res2 = layers.Conv2D(out_channel, kernel_size, padding='same')
-  #   batch2 = layers.BatchNormalization()
-  #   relu2 = layers.ReLU()
+cnn_model = tf.keras.models.load_model("cnnmodel_211231_layer1_7_res_11")
 
-  #   x_t = res1(x)
-  #   x_t = batch1(x_t)
-  #   x_t = relu1(x_t)
-  #   x_t = res2(x_t)
-  #   x_t = batch2(x_t)
-  #   x_t = relu2(x_t)
+# test file
+file = "GANned_image_1.jpg"
 
-  #   if in_channel != out_channel:
-  #     identity = layers.Conv2D(out_channel, (1, 1), padding='same', strides=(2, 2))
-  #     x = identity(x)
-  #   print(x_t.shape)
-  #   print(x.shape)
-  #   return x_t + x
+img = np.array(np.array([cv2.resize(cv2.imread(file, cv2.IMREAD_COLOR), dsize=(256, 256),
+                                 interpolation=cv2.INTER_LINEAR).astype(np.float64)])) / (256.0)
 
-  # channels = x.shape[3]
-    # for l in range(self.num_residual_layers):
-    #   for u in range(self.num_residual_units):
-    #     x = self.residual_unit(x, channels, (lambda x,y:channels*2 if x != 0 and y == 0 else channels)(l, u), self.res_kernel_size)
-    #     channels = channels * 2 if l != 0 and u == 0 else channels
+label = {0: "Mountain", 1:"Ocean", 2:"Tower", 3:"Grass"}
 
-# model
-model = models.Sequential()
-model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape = (256, 256, 3)))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+result = np.array(cnn_model(img))
 
-model.add(layers.Flatten())
-model.add(layers.Dense(64, activation='relu'))
-model.add(layers.Dense(10, activation='softmax'))
+# returning value
+probability = []
 
-# model information
-model.summary()
-
-#model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-#print(model(train_img))
-
-# in_channel : input image channel size, out_channel : output image channel of each unit
-# kernel_size  ex) (3, 3), (5, 5), ..
-class ResidualUnit(tf.keras.Model):
-  def __init__(self, in_channel, out_channel, kernel_size, stride=False):
-    super(ResidualUnit, self).__init__()
-    if stride:
-      self.conv1 = layers.Conv2D(out_channel, kernel_size, padding='same', activation='relu', stride=(2, 2))
-    else:
-      self.conv1 = layers.Conv2D(out_channel, kernel_size, padding='same', activation='relu')
-    self.conv2 = layers.Conv2D(out_channel, kernel_size, padding='same', activation='relu')
-
-    if in_channel ==  out_channel:
-      self.identity = lambda x: x
-    else:
-      self.identity = layers.Conv2D(out_channel, (1, 1), padding='same')
-
-  def call(self, x):
-    x = self.conv1(x)
-    x = self.conv2(x)
-    return x + self.identity(x)
-
-class ResidualLayer(tf.keras.Model):
-  def __init__(self, in_channel, out_channel, kernel_size, stride=False):
-    super(ResidualLayer, self).__init__()
-    # residualunit + unit + unit
-    self.res1 = ResidualUnit(in_channel, out_channel, kernel_size, stride)
-    self.res2 = ResidualUnit(out_channel, out_channel, kernel_size)
-    self.res3 = ResidualUnit(out_channel, out_channel, kernel_size)
-  
-  def call(self, x):
-    x = self.res1(x)
-    x = self.res2(x)
-    x = self.res3(x)
-    return x
-
-from tensorflow.python.keras.activations import softmax
-model = models.Sequential()
-model.add(layers.Conv2D(layer1_output_channel, (11, 11), activation='relu', input_shape = (256, 256, 3)))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(layer2_output_channel, (7, 7), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-#model.add(layers.Conv2D(layer3_output_channel, (7, 7), activation='relu'))
-model.add(layers.Flatten())
-model.add(layers.Dense(4, activation='softmax'))
-
-from tensorflow.python.keras.activations import softmax
-class cnn_model(tf.keras.Model):
-  global input_img_shape, input_channel, layer1_output_channel, layer1_kernel_size, res_kernel_size, layer2_output_channel, layer3_output_channel
-  def __init__(self):
-    super(cnn_model, self).__init__()
-    self.num_residual_units = 3 # number of units per layer
-    self.num_residual_layers = 2 # number of layer per model
-    self.res_kernel_size = (3, 3)
-
-    self.layer1 = models.Sequential(
-        [
-         layers.Conv2D(layer1_output_channel, layer1_kernel_size, strides=(2, 2), 
-                       padding='same', input_shape=input_img_shape, activation='relu'),
-         layers.MaxPool2D(pool_size=(4, 4))]
-    )
-
-    self.res_unit1 = models.Sequential(
-        [layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-    '''
-
-    self.res_unit2 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, strides=(2, 2), padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
-    self.res_unit3 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )'''
-
-    #self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
-
-    self.flatten_layer = layers.Flatten()
-
-    self.classifier = models.Sequential(
-        [layers.Dense(4)]
-    )
-
-  def call(self, x):
-    x = self.layer1(x)
-    x_t = self.res_unit1(x)
-    x = x + x_t
-    #x_t = self.res_unit1(x)
-    #x = x + x_t
-    #x_t = self.res_unit1(x)
-    #x = x + x_t
-    #x_t = self.res_unit2(x)
-    #x = self.identity(x) + x_t
-    #x_t = self.res_unit3(x)
-    #x = x + x_t
-    #x_t = self.res_unit3(x)
-    #x = x + x_t
-    #x_t = self.res_unit3(x)
-    #x = x + x_t
-    x = self.flatten_layer(x)
-    x = self.classifier(x)
-    probs = softmax(x)
-    return probs
-
-class cnn_model(tf.keras.Model):
-  global input_img_shape, input_channel, layer1_output_channel, layer1_kernel_size, res_kernel_size, layer2_output_channel, layer3_output_channel
-  def __init__(self):
-    super(cnn_model, self).__init__()
-
-    self.layer1 = models.Sequential(
-        [layers.Conv2D(layer1_output_channel, layer1_kernel_size, strides=(2, 2), 
-                       padding='same', input_shape=input_img_shape, activation='relu'),
-         layers.MaxPool2D(pool_size=(2, 2))]
-    )
-
-    self.unit1 = models.Sequential(
-        [layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-    '''
-    self.unit2 = models.Sequential(
-        [layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
-    self.unit3 = models.Sequential(
-        [layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer2_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-    '''
-
-    self.unit4 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, strides=(2, 2), padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
-    '''self.unit5 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
-    self.unit6 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )
-
-    self.unit7 = models.Sequential(
-        [layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU(),
-         layers.Conv2D(layer3_output_channel, res_kernel_size, padding='same'),
-         layers.BatchNormalization(),
-         layers.ReLU()
-         ]
-    )   '''
-    self.identity = layers.Conv2D(layer3_output_channel, (1, 1), padding='same', strides=(2, 2))
-    self.flatten_layer = layers.Flatten()
-
-    self.classifier = models.Sequential(
-        [layers.Dense(4)]
-    )
-
-    
-
-  def call(self, x):
-    x = self.layer1(x)
-    x = self.unit1(x)
-    #x = x + x_t
-    #x_t = self.unit2(x)
-    #x = x + x_t
-    #x_t = self.unit3(x)
-    #x = x + x_t
-    x = self.unit4(x)
-    #x = self.identity(x) + x_t
-    #x_t = self.unit5(x)
-    #x = x + x_t
-    #x_t = self.unit6(x)
-    #x = x + x_t
-    #x_t = self.unit7(x)
-    #x = x + x_t
-    x = self.flatten_layer(x)
-    x = self.classifier(x)
-    probs = tf.nn.softmax(x)
-    return probs
+for i in range(4):
+  probability.append([label[i], str(round(100* result[0][i], 2))])

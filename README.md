@@ -37,7 +37,7 @@
   
   #### Model Architecture
   
-### WEB
+### [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
   (웹 페이지 사용방법, 페이지 설명)
   
   [prototype url](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)

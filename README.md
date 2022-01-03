@@ -36,6 +36,7 @@
   |*억새*|000|
   
   #### Model Architecture
+  ![CNN_Model](https://github.com/LSeongjin/DIGIGO/blob/main/CNN_Model/CNN_model_architecture.png)
   
 ### [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
   (웹 페이지 사용방법, 페이지 설명)

@@ -36,10 +36,14 @@
   |*억새*|000|
   
   #### Model Architecture
-  ![CNN_Model](https://github.com/LSeongjin/DIGIGO/blob/main/CNN_Model/CNN_model_architecture.png)
   
-### [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
+  ####정확도 및 손실 함수 그래프
+  ![accuracy per epoch](https://user-images.githubusercontent.com/59309480/147893772-89aea1c0-bbf9-414e-b7e4-0c31010ef7a4.png)
+  ![loss per epoch](https://user-images.githubusercontent.com/59309480/147893773-dc51ed31-2d8f-40ac-8a61-27f922481bb4.png)
+  ![화면 캡처 2021-12-31 151053](https://user-images.githubusercontent.com/59309480/147893785-30c1ffa0-4b4e-4d16-9e14-a0eb51454037.png)
+
+  
+### WEB
   (웹 페이지 사용방법, 페이지 설명)
   
   [prototype url](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
-  ![첫화면](https://user-images.githubusercontent.com/52199642/147894461-3fd62bd2-a8bf-423b-b1bf-9076e197075f.PNG)

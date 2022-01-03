@@ -18,7 +18,7 @@
   |*바다*|000|
   |*억새*|000| 
   
-  #### 이미지 생성
+  #### 이미지 학습 및 생성
 
   ![GAN_Predict](https://user-images.githubusercontent.com/68309988/147800063-2b9ccd20-6938-412b-9e26-bd5e303cb385.png)
   ![GAN_Predict2](https://user-images.githubusercontent.com/68309988/147800082-32a5a3c3-4071-437b-95ef-faddfabac8d1.png)

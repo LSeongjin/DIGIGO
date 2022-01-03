@@ -42,3 +42,4 @@
   (웹 페이지 사용방법, 페이지 설명)
   
   [prototype url](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
+  ![첫화면](https://user-images.githubusercontent.com/52199642/147894461-3fd62bd2-a8bf-423b-b1bf-9076e197075f.PNG)

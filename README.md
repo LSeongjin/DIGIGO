@@ -1,12 +1,12 @@
 # DIGIGO (내용 추가 할게 생각 나시면 여기 작성해주셔도 좋습니다!)
 
-프로젝트 간단 설명
+### Kt_intern5
+이성진 손일수 성혜림 송승원 정찬휘 조인호 조승현 이지수 최예지
+
+## Contents
   1. [GAN MODEL](#GAN-MODEL)
   2. [CNN MODEL](#CNN-MODEL)
   3. [WEB](#WEB)
-
-### kt_intern5
-이성진 손일수 성혜림 송승원 정찬휘 조인호 조승현 이지수 최예지
 
 ## [GAN MODEL](https://github.com/LSeongjin/DIGIGO/blob/main/GAN_Model/GAN_DIGIGO_KT_mountain.ipynb)
 

@@ -43,13 +43,13 @@
   ### [DIGIGO LINK](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
   
   1. 첫 페이지
-  ![첫화면](https://user-images.githubusercontent.com/52199642/147894461-3fd62bd2-a8bf-423b-b1bf-9076e197075f.PNG)
+![initpage](https://user-images.githubusercontent.com/52199642/147903768-5200a4b4-a7fa-4a6c-872a-005691c908ad.jpg)
   
   2. upload 페이지
-  ![upload](https://user-images.githubusercontent.com/52199642/147894525-84aeabe7-af66-410b-8bee-a5fe842698c5.PNG)
+![uploadpage](https://user-images.githubusercontent.com/52199642/147903769-6e8b66d2-b922-4c46-a913-7a1b42ec8904.jpg)
   
   3. detail 페이지
-  ![detail](https://user-images.githubusercontent.com/52199642/147894534-f734bb85-c8af-4ace-8f4d-9926931c721d.png)
+![detailpage](https://user-images.githubusercontent.com/52199642/147903770-85a438f8-8c18-4d8d-b30c-a9e45ccd33ec.jpg)
   
   4. info 페이지
-  ![info](https://user-images.githubusercontent.com/52199642/147894595-7e2f7ad2-79fc-49df-8377-64d413f20705.PNG)
+![infopage](https://user-images.githubusercontent.com/52199642/147903764-cc5b2167-b6be-45a9-a083-f47a94a33b3a.jpg)

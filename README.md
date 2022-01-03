@@ -40,6 +40,7 @@
   ####정확도 및 손실 함수 그래프
   ![accuracy per epoch](https://user-images.githubusercontent.com/59309480/147893772-89aea1c0-bbf9-414e-b7e4-0c31010ef7a4.png)
   ![loss per epoch](https://user-images.githubusercontent.com/59309480/147893773-dc51ed31-2d8f-40ac-8a61-27f922481bb4.png)
+  
   ![화면 캡처 2021-12-31 151053](https://user-images.githubusercontent.com/59309480/147893785-30c1ffa0-4b4e-4d16-9e14-a0eb51454037.png)
 
   

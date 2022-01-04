@@ -1,5 +1,7 @@
 # DIGIGO (내용 추가 할게 생각 나시면 여기 작성해주셔도 좋습니다!)
- 코로나로 인한 답답함, 우울증 등에 가벼운 여행의 필요성 대두  "휴일을 제대로 못 즐기고 여행도 못가니 갑갑한 느낌이 든다"  상상속, 기억속 여행지를 찾지 못하는 분들을 위해 개발
+ 코로나로 인한 답답함, 우울증 등에 가벼운 여행의 필요성 대두  
+ :mask: : "휴일을 제대로 못 즐기고 여행도 못가니 갑갑한 느낌이 든다"  
+ 상상속, 기억속 여행지를 찾지 못하는 분들을 위해 개발 :sun_with_face::palm_tree::blossom:
  
 ### Kt_intern5
 이성진 손일수 성혜림 송승원 정찬휘 조인호 조승현 이지수 최예지
@@ -40,16 +42,16 @@
   
 ## [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
   
-  ### [DIGIGO LINK](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
+  ### [:link:DIGIGO LINK](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
   
-  1. 첫 페이지
+  #### :one: 첫 페이지
 ![initpage](https://user-images.githubusercontent.com/52199642/147903768-5200a4b4-a7fa-4a6c-872a-005691c908ad.jpg)
-  
-  2. upload 페이지
+
+  #### :two: upload 페이지
 ![uploadpage](https://user-images.githubusercontent.com/52199642/147903769-6e8b66d2-b922-4c46-a913-7a1b42ec8904.jpg)
   
-  3. detail 페이지
-![detailpage](https://user-images.githubusercontent.com/52199642/147903770-85a438f8-8c18-4d8d-b30c-a9e45ccd33ec.jpg)
+  #### :three: detail 페이지
+![detailpage](https://user-images.githubusercontent.com/58840682/147996607-db967e6b-52d2-48f3-acf3-35493151e3ed.PNG)
   
-  4. info 페이지
+  #### :four: info 페이지
 ![infopage](https://user-images.githubusercontent.com/52199642/147903764-cc5b2167-b6be-45a9-a083-f47a94a33b3a.jpg)

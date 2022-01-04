@@ -48,7 +48,7 @@
 		<div><img alt="이미지를 보여주세요." src=/image/{{ userPicture.ID }}GANed_Image.png></div>
             </div>
 
-            <!--세 부분으로 나눔-->
+            <!-- CNN 분류 결과와 확률 컨테이너 -->
             <div id="right"> 
                 <div class="item">
                     <!--여행지 이름-->
@@ -71,6 +71,7 @@
             </div>
         </div> 
 
+        <!-- 여행지 추천 페이지  -->
         <div id="btnContainer">
             <input type ="submit" class="btn" value="상상 속 여행지 추천받기" onclick="location.href='info/{{userPicture.ID}}'"> 
         </div>

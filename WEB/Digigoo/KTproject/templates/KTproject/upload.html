@@ -11,7 +11,6 @@
 
     <title>Digigo UPLOAD</title>
     
-    <!--글씨체-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
@@ -28,14 +27,15 @@
 
     <div class="container-fulid">
         
-        <!--세 부분으로 나눔-->
         <div class="item" id="blank"> </div>
         <div class="col" id="inputcol">
             
+            <!-- 헤더타이틀 -->
             <div class="row" id="row1">
                 <text id="text1"> 어디로 떠나고 싶나요? </text>
             </div>
     
+            <!-- 그림 이미지 파일 업로드 폼 -->
             <div class="row" id="row2">
                 <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -51,25 +51,18 @@
                             <text>drag&drop</text>
                         </div>
                     </div>
-                    
-                    <div class="row" id="row2"></div>
     
                     <div class="row">
-                        <!--<p>{{form.UserDrawnPicture}}</p>-->
                         <p class="formDstination">어떤 그림인가요? : {{form.Destination_choice}}</p>
-                        
                     </div>
     
                     <div class="row" id="row3">
                         <input type="submit" class="btn" value="Submit"  >   
                     </div>
-    
                 </form>
             </div>
             
         </div>
-        <div class="item" id="blank"> </div>
-        
     </div>
 </body>
 </html>

@@ -11,6 +11,75 @@
 
 ***
 
+## Git Directory
+''' bash
++---CNN_Model
+|   \---Image
+|       +---01
+|       +---02
+|       +---03
+|       \---04
++---GAN_Model
+|   +---Image
+|   |   +---01
+|   |   +---02
+|   |   +---03
+|   |   +---04
+|   |   \---Test_img
+|   \---src
+\---WEB
+    \---Digigoo
+        +---.idea
+        |   \---inspectionProfiles
+        +---boot_css
+        +---Digigoo
+        |   +---Lib
+        |   +---Scripts
+        +---image
+        +---KTproject
+        |   +---cnnmodel_211230
+        |   |   \---variables
+        |   +---migrations
+        |   +---templates
+        |   |   \---KTproject
+        |   |       +---boot_css
+        |   |       \---web_img
+        +---static
+        |   \---admin
+        |       +---css
+        |       |   \---vendor
+        |       |       \---select2
+        |       +---fonts
+        |       +---img
+        |       |   \---gis
+        |       \---js
+        |           +---admin
+        |           \---vendor
+        |               +---jquery
+        |               +---select2
+        |               |   \---i18n
+        |               \---xregexp
+        +---staticfiles
+        |   \---admin
+        |       +---css
+        |       |   \---vendor
+        |       |       \---select2
+        |       +---fonts
+        |       +---img
+        |       |   \---gis
+        |       \---js
+        |           +---admin
+        |           \---vendor
+        |               +---jquery
+        |               +---select2
+        |               |   \---i18n
+        |               \---xregexp
+        +---templates
+        +---web_img
+        \---
+
+'''
+
 ## Contents
   1. [GAN MODEL](#GAN-MODEL)
   2. [CNN MODEL](#CNN-MODEL)

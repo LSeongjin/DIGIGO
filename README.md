@@ -12,7 +12,7 @@
 ***
 
 ## Git Directory
-''' bash
+``` bash
 +---CNN_Model
 |   \---Image
 |       +---01
@@ -78,7 +78,7 @@
         +---web_img
         \---
 
-'''
+```
 
 ## Contents
   1. [GAN MODEL](#GAN-MODEL)

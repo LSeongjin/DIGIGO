@@ -2,9 +2,12 @@
  - 코로나로 인한 답답함, 우울증 등에 가벼운 여행의 필요성 대두  
  - :mask: : "휴일을 제대로 못 즐기고 여행도 못가니 갑갑한 느낌이 든다"  
  - **상상속, 기억속 여행지**를 찾지 못하는 분들을 위해 개발 :sun_with_face::palm_tree::blossom:
+
  
 ### by Kt_intern5
 이성진 손일수 성혜림 송승원 정찬휘 조인호 조승현 이지수 최예지
+
+ <img src="https://user-images.githubusercontent.com/58840682/148007703-65feff4a-f487-49f6-b6cc-0b267d9ab6e6.png" width="396" height="441"/>
 
 ***
 
@@ -12,7 +15,7 @@
   1. [GAN MODEL](#GAN-MODEL)
   2. [CNN MODEL](#CNN-MODEL)
   3. [WEB](#WEB)
-
+ 
 ## [GAN MODEL](https://github.com/LSeongjin/DIGIGO/blob/main/GAN_Model/GAN_DIGIGO_KT_mountain.ipynb)
 
   #### DataSet  

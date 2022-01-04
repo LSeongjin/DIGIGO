@@ -11,7 +11,6 @@
     
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ax1eesyux3"></script>
     
-    <!--글씨체-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
@@ -34,12 +33,14 @@
 <body>
     <div class="container-fulid" >
 
+	<!-- 헤더타이틀 -->
         <div class="row1">
             <div id="detailTitle">
                 <text id="text1"> 여행지로 <text id="text2">경포해변</text> 어떠신가요? </text>
             </div>
         </div>
 
+       <!-- 지도 & 사진 타이틀 -->
        <div class="row1"> 
            <div class="item">
 	       <text class="t1">[찾아가는길]</text>
@@ -49,6 +50,7 @@
 	   </div>
        </div>
 
+       <!-- 지도 & 사진 -->
        <div class="item" id="item1">
             <!--지도-->
 	    <div id="map" ></div>
@@ -56,7 +58,11 @@
 	    <img id="resultimage" src=/image/gyongpo.jpg alt="">
        </div>
 
+	
+        <!-- 여행지 상세 설명 컨테이너 -->
         <div class="listContainer">
+		
+            <!-- 여행지 주소 -->
             <div class="list">
                 <div class="listTitle">위치</div>
                 <p>
@@ -64,6 +70,7 @@
                 </p>
             </div>
 
+            <!-- 관광가이드 -->
             <div class="list">
                 <div class="listTitle">관광가이드</div>
                 <p>
@@ -71,7 +78,7 @@
                 </p>
             </div>
     
-    
+            <!-- 주변여행지 -->
             <div class="list">
                 <div class="listTitle">주변여행지</div>
                 <div id="row2">
@@ -105,6 +112,7 @@
 
         </div>   
 
+	<!-- 하단 네비게이션 버튼 -->
 	<div class="row1">
 	    <a class="sub" href="{% url 'pictureNew' %}">다른 그림</a>
 	    <a class="sub" href="{% url 'init' %}">흠으로</a>

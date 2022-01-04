@@ -1,5 +1,5 @@
 from django.urls import path,include
-from KTproject.views import pictureNew, init, info
+from KTproject.views import pictureNew,info,init
 from .models import UserPicture
 from django.views.generic.detail import DetailView
 

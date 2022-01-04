@@ -18,7 +18,7 @@
   
     <title>Digigo UPLOAD</title>
 
-    <script type="text/javascript" src="{% static 'admin/js/info_gyongpo.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'admin/js/info_gyongpodae.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'admin/css/info.css' %}">
     <style>
         body {
@@ -40,22 +40,21 @@
             </div>
         </div>
 
-        <div class="row1">
-            <div class="item">
-                <text class="t1">[찾아가는길]</text>
-            </div>
-            <div class="item">
-                <text class="t1">[사진]</text>
-            </div>
-        </div>
+       <div class="row1"> 
+           <div class="item">
+	       <text class="t1">[찾아가는길]</text>
+	   </div>
+	   <div class="item">
+	       <text class="t1">[사진]</text>
+	   </div>
+       </div>
 
        <div class="item" id="item1">
             <!--지도-->
-            <div id="map" ></div>
+	    <div id="map" ></div>
             <!--사진-->
-            <img id="resultimage" src="{% static 'admin/img/gyongpo.jpg' %}" alt="">
-            
-        </div>
+	    <img id="resultimage" src=/image/gyongpo.jpg alt="">
+       </div>
 
         <div class="listContainer">
             <div class="list">
@@ -79,7 +78,7 @@
                     <!--주변여행지1-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/gyongpodae.jpg' %}" alt="">
+                            <img src=/image/gyongpodae.jpg alt="">
                         </div>
                         <div class="arountTitle">경포대</div>
                     </div>
@@ -87,7 +86,7 @@
                     <!--주변여행지2-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/sachun.jpg' %}" alt="">
+                            <img src=/image/sachun.jpg alt="">
                         </div>
                         <div class="arountTitle">사천해변</div>
                     </div>
@@ -95,7 +94,7 @@
                     <!--주변여행지3-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/Anmok.jpg' %}" alt="">
+                            <img src=/image/Anmok.jpg alt="">
                         </div>
                         <div class="arountTitle">안목해변</div>
                     </div>
@@ -104,7 +103,13 @@
                 
             </div>  
 
-        </div>    
+        </div>   
+
+	<div class="row1">
+	    <a class="sub" href="{% url 'pictureNew' %}">다른 그림</a>
+	    <a class="sub" href="{% url 'init' %}">흠으로</a>
+	</div>
+
     </div>
 </body>
 </html>

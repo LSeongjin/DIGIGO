@@ -53,7 +53,7 @@
             <!--지도-->
             <div id="map" ></div>
             <!--사진-->
-            <img id="resultimage" src="{% static 'admin/img/jeju.jpg' %}" alt="">
+            <img id="resultimage" src=/image/jeju.jpg alt="">
             
         </div>
 
@@ -79,7 +79,7 @@
                     <!--주변여행지1-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/hamduck.jpg' %}" alt="">
+                            <img src=/image/hamduck.jpg alt="">
                         </div>
                         <div class="arountTitle">함덕 서우봉 해변</div>
                     </div>
@@ -87,7 +87,7 @@
                     <!--주변여행지2-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/huyang.jpg' %}" alt="">
+                            <img src=/image/huyang.jpg alt="">
                         </div>
                         <div class="arountTitle">제주 절물 자연 휴양림</div>
                     </div>
@@ -95,7 +95,7 @@
                     <!--주변여행지3-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/hanrasan.jpg' %}" alt="">
+                            <img src=/image/hanrasan.jpg alt="">
                         </div>
                         <div class="arountTitle">한라산 성판악</div>
                     </div>
@@ -103,7 +103,13 @@
                 </div>
             </div>  
 
-        </div>      
+        </div>     
+
+	<div class="row1">
+	    <a class="sub" href="{% url 'pictureNew' %}">다른 그림</a>
+	    <a class="sub" href="{% url 'init' %}">홈으로</a>
+	</div>
+	
     </div>
 </body>
 </html>

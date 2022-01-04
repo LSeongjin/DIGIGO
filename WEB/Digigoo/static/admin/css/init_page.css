@@ -1,0 +1,29 @@
+@import url("base.css");
+
+text,a{
+  width: 40vw;
+  font-size: 10vw;
+  color: white;
+  font-family: "Shizuru", cursive;
+}
+.sub {
+  font-size: 4em;
+  text-align: center;
+  color: skyblue;
+  background-color: white;
+  border-radius: 0.4em;
+  line-height: 1.5em;
+  height: 1.5em;
+}
+#nextbtn:hover {
+  color: red;
+}
+.container-fulid {
+  height: 30vh;
+  display: flex;
+  flex-direction: row;
+  margin: 4px;
+}
+.col {
+  width: 60vw;
+}

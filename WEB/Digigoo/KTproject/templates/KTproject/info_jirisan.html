@@ -53,7 +53,7 @@
             <!--지도-->
             <div id="map" ></div>
             <!--사진-->
-            <img id="resultimage" src="{% static 'aadmin/img/jirisan.jpg' %}" alt="">
+            <img id="resultimage" src=/image/jirisan.jpg alt="">
             
         </div>
 
@@ -82,7 +82,7 @@
                     <!--주변여행지1-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/rail.png' %}" alt="">
+                            <img src=/image/rail.PNG alt="">
                         </div>
                         <div class="arountTitle">섬진강기차마을(곡성)</div>
                     </div>
@@ -90,7 +90,7 @@
                     <!--주변여행지2-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/camp.png' %}" alt="">
+                            <img src=/image/camp.PNG alt="">
                         </div>
                         <div class="arountTitle">방화동가족휴양촌(장수)</div>
                     </div>
@@ -98,7 +98,7 @@
                     <!--주변여행지3-->
                     <div class="item nearby_place">
                         <div class="aroundImage">
-                            <img src="{% static 'admin/img/hwayeom.png' %}" alt="">
+                            <img src=/image/hwayeom.PNG alt="">
                         </div>
                         <div class="arountTitle">화엄사(구례)</div>
                     </div>
@@ -106,7 +106,13 @@
                 </div>
             </div>  
 
-        </div>      
+        </div> 
+
+	<div class="row1">
+	    <a class="sub" href="{% url 'pictureNew' %}">다른 그림</a>
+	    <a class="sub" href="{% url 'init' %}">홈으로</a>
+	</div>
+	
     </div>
 </body>
 </html>

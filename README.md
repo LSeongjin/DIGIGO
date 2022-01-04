@@ -52,12 +52,6 @@ DIGIGO
         │      ├─fonts
         │      ├─img
         │      └─js
-        ├─staticfiles
-        │  └─admin
-        │      ├─css
-        │      ├─fonts
-        │      ├─img
-        │      └─js
         ├─templates
         └─web_img
 

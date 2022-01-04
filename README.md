@@ -55,8 +55,8 @@
   #### :two: upload 페이지
 ![uploadpage](https://user-images.githubusercontent.com/52199642/147903769-6e8b66d2-b922-4c46-a913-7a1b42ec8904.jpg)
   
-  #### :three: detail 페이지
+  #### :three: GAN, CNN 결과 페이지
 ![detailpage](https://user-images.githubusercontent.com/58840682/147996607-db967e6b-52d2-48f3-acf3-35493151e3ed.PNG)
   
-  #### :four: info 페이지
+  #### :four: 여행지 추천 페이지
 ![infopage](https://user-images.githubusercontent.com/52199642/147903764-cc5b2167-b6be-45a9-a083-f47a94a33b3a.jpg)

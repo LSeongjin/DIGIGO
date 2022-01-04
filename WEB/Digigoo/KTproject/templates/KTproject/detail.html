@@ -41,7 +41,8 @@
 
         <div id="contentContainer">
             <div id="left">
-                <img alt="이미지를 보여주세요." src=/image/{{ userPicture.ID }}GANed_Image.png>
+                <div><img alt="이미지를 보여주세요." src={{ userPicture.userDrawnPicture.url }}</div>
+                <div><img alt="이미지를 보여주세요." src=/image/{{ userPicture.ID }}GANed_Image.png></div>
             </div>
 
             <!--세 부분으로 나눔-->

@@ -40,6 +40,7 @@
                 <form action="pictureNew" method="POST" class="url_input" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
+                        <!-- 이미지 업로드 (파일 선택) -->
                         <label class="file-button" for="file">
                             Image Upload
                         </label>
@@ -47,15 +48,18 @@
                     </div>
                     
                     <div class="row">
+                        <!-- 이미지 업로드 (파일 drag & drop) -->
                         <div class="drop-zone">
                             <text>drag&drop</text>
                         </div>
                     </div>
     
+                    <!-- 그림 유형 선택 -->
                     <div class="row">
                         <p class="formDstination">어떤 그림인가요? : {{form.Destination_choice}}</p>
                     </div>
     
+                    <!-- 이미지 업로드  -->
                     <div class="row" id="row3">
                         <input type="submit" class="btn" value="Submit"  >   
                     </div>

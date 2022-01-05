@@ -1,12 +1,12 @@
-# DIGIGO [:link:LINK](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
+# DIGIGO [:link:](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
  - 코로나로 인한 답답함, 우울증 등에 가벼운 여행의 필요성 대두  
  - :mask: : "휴일을 제대로 못 즐기고 여행도 못가니 갑갑한 느낌이 든다"  
  - **상상속, 기억속 여행지**를 찾지 못하는 분들을 위해 개발 :sun_with_face::palm_tree::blossom:
 
-## 주요 서비스
-1. 상상 속 여행지 실사화 서비스
-2. 상상 속 여행지 추천 서비스
-3. 웹 페이지를 통해 추천 여행지 정보 제공
+### 주요 서비스
+1. 상상 속 **여행지 실사화** 서비스
+2. 상상 속 **여행지 추천** 서비스
+3. 웹 페이지를 통해 추천 **여행지 정보** 제공
  
 ### by Kt_intern5
 이성진 손일수 성혜림 송승원 정찬휘 조인호 조승현 이지수 최예지
@@ -15,7 +15,7 @@
 
 ***
 
-## Git Directory
+# Git Directory
 ``` bash
 DIGIGO
 ├─CNN_Model
@@ -60,7 +60,7 @@ DIGIGO
 ```
 ***
 
-## Contents
+# Contents
   1. [GAN MODEL](#GAN-MODEL)
   2. [CNN MODEL](#CNN-MODEL)
   3. [WEB](#WEB)
@@ -94,7 +94,7 @@ DIGIGO
   #### Model Architecture
   ![CNN_Model](https://github.com/LSeongjin/DIGIGO/blob/main/CNN_Model/CNN_model_architecture.png)
   
-## [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
+# [WEB](https://github.com/LSeongjin/DIGIGO/tree/main/WEB/Digigoo)
   
   ### [:link:DIGIGO LINK](http://ec2-15-164-97-115.ap-northeast-2.compute.amazonaws.com/)
   

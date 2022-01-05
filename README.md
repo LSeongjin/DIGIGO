@@ -36,7 +36,6 @@ DIGIGO
         ├─Digigoo
         │  ├─Lib
         │  ├─Scripts
-        │  └─__pycache__
         ├─image
         ├─KTproject
         │  ├─cnnmodel_211230

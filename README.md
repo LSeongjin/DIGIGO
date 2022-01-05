@@ -1,4 +1,4 @@
-# DIGIGO (내용 추가 할게 생각 나시면 여기 작성해주셔도 좋습니다!)
+# DIGIGO
  - 코로나로 인한 답답함, 우울증 등에 가벼운 여행의 필요성 대두  
  - :mask: : "휴일을 제대로 못 즐기고 여행도 못가니 갑갑한 느낌이 든다"  
  - **상상속, 기억속 여행지**를 찾지 못하는 분들을 위해 개발 :sun_with_face::palm_tree::blossom:
@@ -54,6 +54,7 @@ DIGIGO
         └─web_img
 
 ```
+***
 
 ## Contents
   1. [GAN MODEL](#GAN-MODEL)

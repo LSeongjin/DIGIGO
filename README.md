@@ -34,8 +34,6 @@ DIGIGO
         │  └─inspectionProfiles
         ├─boot_css
         ├─Digigoo
-        │  ├─Lib
-        │  ├─Scripts
         ├─image
         ├─KTproject
         │  ├─cnnmodel_211230
@@ -51,6 +49,7 @@ DIGIGO
         │      ├─fonts
         │      ├─img
         │      └─js
+        │      │  └─admin
         ├─templates
         └─web_img
 

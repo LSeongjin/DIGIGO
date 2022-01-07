@@ -66,7 +66,7 @@ DIGIGO
   2. [CNN MODEL](#CNN-MODEL)
   3. [WEB](#WEB)
  
-## [GAN MODEL](https://github.com/LSeongjin/DIGIGO/blob/main/GAN_Model/GAN_DIGIGO_KT_mountain.ipynb)
+## [GAN MODEL](https://github.com/LSeongjin/DIGIGO/blob/main/GAN_Model/GAN_DIGIGO_KT.ipynb)
 
   #### DataSet  
   |종류|갯수|
